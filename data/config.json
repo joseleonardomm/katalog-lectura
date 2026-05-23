@@ -1,0 +1,42 @@
+{
+  "siteName": "Katalog",
+  "primaryColor": "#0038a8",
+  "secondaryColor": "#075769",
+  "logoUrl": "",
+  "whatsappNumber": "584141234567",
+  "whatsappMessage": "Hola! Me interesa este producto",
+  "footerText": "© 2025 Katalog - Demo profesional interactivo",
+  "heroSlides": [
+    {
+      "id": 1,
+      "title": "🔥 Hasta 40% OFF",
+      "subtitle": "En productos seleccionados",
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1200"
+    },
+    {
+      "id": 2,
+      "title": "🚚 Envíos a toda Venezuela",
+      "subtitle": "Entregas rápidas y seguras",
+      "image": "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1200"
+    },
+    {
+      "id": 3,
+      "title": "📱 Tecnología de punta",
+      "subtitle": "Los mejores gadgets del mercado",
+      "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200"
+    }
+  ],
+  "socialLinks": {
+    "instagram": "",
+    "facebook": "",
+    "twitter": "",
+    "youtube": ""
+  },
+  "location": {
+    "address": "Caracas, Venezuela",
+    "mapEmbed": "https://maps.google.com/maps?q=Caracas%2C%20Venezuela&t=&z=13&ie=UTF8&iwloc=&output=embed",
+    "schedule": "Lun a Vie 9am-6pm",
+    "phone": "+58 212-555-1234",
+    "email": "hola@katalog.com"
+  }
+}
