@@ -1,0 +1,5 @@
+.inv-header { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.inv-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 16px; overflow: hidden; }
+.inv-table th, .inv-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
+.inv-table th { background: var(--bg-secondary); color: var(--text-secondary); font-size: 0.8rem; }
+.inv-loading { text-align: center; padding: 2rem; color: var(--text-muted); }

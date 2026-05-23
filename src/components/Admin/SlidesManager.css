@@ -1,0 +1,155 @@
+/* ===== SLIDES MANAGER – Tema oscuro profesional ===== */
+
+.slides-manager {
+  /* usa el contenedor normal del admin */
+}
+
+/* La grilla de slides ya está definida en AdminDashboard.css */
+
+/* Modal específico para slides */
+.slides-modal {
+  max-width: 700px;
+}
+
+.slide-form .form-group {
+  margin-bottom: 1.2rem;
+}
+
+.slide-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.slide-form input,
+.slide-form select,
+.slide-form textarea {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 0.9rem;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  transition: 0.2s;
+}
+
+.slide-form input:focus,
+.slide-form select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.slide-form .modern-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.6rem 1.3rem;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 2px 8px rgba(255,107,0,0.3);
+  transition: 0.2s;
+}
+
+.slide-form .modern-upload-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Imagen preview horizontal */
+.slide-form .image-preview-grid {
+  display: flex;
+  gap: 0.8rem;
+  overflow-x: auto;
+}
+
+.slide-form .image-preview-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.slide-form .image-preview {
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--bg-secondary);
+}
+
+.slide-form .image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide-form .remove-img-btn {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 0.85rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.slide-form .remove-img-btn:hover {
+  background: var(--danger-soft);
+  border-color: var(--danger);
+}
+
+/* Galería de imágenes prediseñadas */
+.preset-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+}
+
+.preset-image {
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.preset-image:hover {
+  border-color: var(--accent);
+  transform: scale(1.03);
+}
+
+.preset-image img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+.preset-image span {
+  display: block;
+  padding: 0.2rem;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+}

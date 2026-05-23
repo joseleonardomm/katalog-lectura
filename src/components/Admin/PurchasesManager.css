@@ -1,0 +1,10 @@
+/* Mismos estilos de .inv-header, .inv-table, .item-row, .btn-add, .btn-remove que SalesManager.css */
+.inv-header { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.inv-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 16px; overflow: hidden; }
+.inv-table th, .inv-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
+.inv-table th { background: var(--bg-secondary); color: var(--text-secondary); font-size: 0.8rem; }
+.item-row { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.item-row select, .item-row input { flex: 1; min-width: 100px; }
+.btn-add, .btn-remove { background: none; border: 1px dashed var(--border-light); color: var(--text-secondary); padding: 0.3rem 0.8rem; border-radius: 8px; cursor: pointer; }
+.btn-remove { color: var(--danger); border: 1px solid var(--danger); }
+.inv-loading { text-align: center; padding: 2rem; color: var(--text-muted); }

@@ -1,0 +1,106 @@
+/* ===== PLAN MANAGER – Tema oscuro profesional ===== */
+
+.plan-manager {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.plan-manager h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #f0f0f5;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.plan-card {
+  background: #1e1e2e;
+  border: 1px solid #2a2a3c;
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.plan-card h3 {
+  margin: 0 0 1rem;
+  color: #f0f0f5;
+  border-bottom: 2px solid #ff6b00;
+  padding-bottom: 0.5rem;
+}
+
+.plan-field {
+  margin-bottom: 1rem;
+}
+
+.plan-field label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+  color: #a0a0b8;
+}
+
+.plan-field input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #2a2a3c;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: #252536;
+  color: #f0f0f5;
+}
+
+.plan-field small {
+  color: #707088;
+  font-size: 0.75rem;
+}
+
+.plan-features {
+  margin-top: 1rem;
+}
+
+.plan-features > label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #a0a0b8;
+}
+
+.feature-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: #f0f0f5;
+}
+
+.feature-checkbox input {
+  accent-color: #ff6b00;
+}
+
+.btn-save {
+  background: #ff6b00;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  display: block;
+  margin: 0 auto;
+}
+.btn-save:hover {
+  background: #ff8c42;
+}
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

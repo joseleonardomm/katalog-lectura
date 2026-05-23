@@ -1,0 +1,112 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  margin-top: 90px;
+}
+
+.footer {
+  background: var(--footer-bg, #1e1e2a);
+  color: var(--footer-text, #ddd);
+  padding: 2.5rem 0;
+  margin-top: 3rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-grid h3, .footer-grid h4 {
+  margin-bottom: 1rem;
+  color: var(--primary, #ff8c42);
+}
+
+.footer-grid a {
+  text-decoration: none;
+  color: var(--primary, #ff8c42);
+}
+
+.social-icons {
+  margin-top: 1rem;
+}
+
+.social-icons a {
+  margin-right: 15px;
+  font-size: 1.4rem;
+  display: inline-block;
+  color: var(--primary, #ff8c42);
+}
+
+.map-placeholder iframe {
+  width: 100%;
+  height: 180px;
+  border-radius: 20px;
+  border: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #333;
+  font-size: 0.9rem;
+}
+
+/* Botón abrir catálogo completo */
+.full-catalog-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 1rem;
+}
+
+.btn-full-catalog {
+  background: var(--button-primary-bg, var(--primary, #ff8c42));
+  padding: 12px 28px;
+  font-size: 1rem;
+  border-radius: 40px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--button-primary-text, white);
+}
+
+.btn-full-catalog:hover {
+  background: var(--secondary, #e06e1a);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Modal demo */
+.demo-modal .modal-container {
+  max-width: 500px;
+  text-align: center;
+}
+
+.demo-container h2 {
+  color: var(--primary, #ff8c42);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 130px;
+  }
+  .full-catalog-btn-container {
+    margin: 1.5rem 0 0.5rem;
+  }
+  .btn-full-catalog {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  .demo-modal .modal-container {
+    max-width: 90%;
+    margin: 1rem;
+  }
+}

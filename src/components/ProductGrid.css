@@ -1,0 +1,117 @@
+.product-grid-section {
+  margin: 3rem 0;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+/* En móvil: scroll horizontal para el catálogo */
+@media (max-width: 768px) {
+  .catalog-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+  }
+  .catalog-item {
+    flex: 0 0 200px;
+    scroll-snap-align: start;
+  }
+}
+
+.catalog-item {
+  background: white;
+  border-radius: 28px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  border: 1px solid #f5e2d4;
+  cursor: pointer;
+}
+
+.catalog-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary, #ff8c42);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.catalog-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #faf3ec;
+}
+
+.catalog-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.catalog-item:hover .catalog-image img {
+  transform: scale(1.05);
+}
+
+.catalog-info {
+  padding: 1rem;
+}
+
+.catalog-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--product-text, #2d3748);
+}
+
+.product-price {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+  color: var(--price-color, var(--primary, #ff8c42));
+}
+
+.quick-view {
+  margin-top: 0.75rem;
+  width: 100%;
+  padding: 8px;
+  font-size: 0.8rem;
+  border-radius: 40px;
+  background: var(--button-primary-bg, var(--primary, #ff8c42));
+  color: var(--button-primary-text, white);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.quick-view:hover {
+  background: var(--secondary, #e06e1a);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 28px;
+  color: #888;
+}
+
+@media (max-width: 640px) {
+  .catalog-info h4 {
+    font-size: 0.85rem;
+  }
+  .product-price {
+    font-size: 0.95rem;
+  }
+  .quick-view {
+    font-size: 0.7rem;
+    padding: 6px;
+  }
+}

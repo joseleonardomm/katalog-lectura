@@ -1,0 +1,111 @@
+.full-categories-section {
+  margin: 2rem 0;
+}
+
+.full-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Móvil: scroll horizontal */
+@media (max-width: 768px) {
+  .full-categories-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .full-category-card {
+    flex: 0 0 220px;
+    scroll-snap-align: start;
+    padding: 0.6rem 1rem;
+  }
+}
+
+.full-category-card {
+  background: white;
+  border-radius: 24px;
+  padding: 0.8rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.25s ease;
+  border: 1px solid #ffebdd;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.full-category-card:hover {
+  transform: translateX(6px);
+  border-color: var(--primary, #ff8c42);
+  box-shadow: 0 8px 20px rgba(255,140,66,0.1);
+}
+
+.full-category-card.active {
+  border-color: var(--primary, #ff8c42);
+  background: #fff8f2;
+  box-shadow: 0 8px 20px rgba(255,140,66,0.15);
+}
+
+.full-category-icon {
+  font-size: 2rem;
+  background: #fff3ea;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--primary, #ff8c42);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.full-category-info {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+/* 👇 CAMBIO CLAVE: ahora usa buttonPrimaryText en lugar de sectionTitle */
+.full-category-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--button-primary-text, white);
+}
+
+.full-category-info p {
+  font-size: 0.75rem;
+  color: var(--product-text, #2d3748);
+}
+
+/* Overlay cuando hay imagen de fondo */
+.full-category-card[style*="background-image"] .full-category-icon,
+.full-category-card[style*="background-image"] .full-category-info h3,
+.full-category-card[style*="background-image"] .full-category-info p {
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+/* Móvil muy pequeño */
+@media (max-width: 480px) {
+  .full-category-card {
+    flex: 0 0 190px;
+    padding: 0.5rem 0.8rem;
+  }
+  .full-category-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.6rem;
+  }
+  .full-category-info h3 {
+    font-size: 0.9rem;
+  }
+}

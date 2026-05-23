@@ -1,0 +1,157 @@
+.cart-sidebar {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  width: 400px;
+  max-width: 90vw;
+  height: 100%;
+  background: white;
+  z-index: 1500;
+  box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+.cart-sidebar.open { right: 0; }
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  border-bottom: 2px solid #ffdec9;
+  padding-bottom: 1rem;
+  font-size: 1.1rem;
+}
+.close-icon {
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--primary, #ff8c42);
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+.empty-cart {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #ffe4d4;
+  padding-bottom: 0.8rem;
+}
+.cart-item-info { flex: 1; }
+.cart-item-title { font-weight: 600; margin-bottom: 0.3rem; }
+.cart-item-price { font-size: 0.85rem; color: var(--primary, #ff8c42); }
+.cart-item-quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 0.5rem;
+}
+.cart-item-quantity button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ffdec9;
+  background: white;
+  cursor: pointer;
+  color: var(--primary, #ff8c42);
+}
+.cart-item-subtotal {
+  text-align: right;
+  font-weight: 600;
+  min-width: 90px;
+}
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff5e00;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.cart-total {
+  font-weight: 800;
+  font-size: 1.2rem;
+  border-top: 2px solid #ffdec9;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--primary, #ff8c42);
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 60px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.8rem;
+  background: #eee;
+  color: #333;
+}
+.checkout-btn.primary {
+  background: var(--primary, #ff8c42);
+  color: white;
+}
+
+/* ========== ENVÍOS ========== */
+.shipping-section {
+  border-top: 2px solid #ffdec9;
+  padding-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.shipping-section h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  color: #2d3748;
+}
+.shipping-details p {
+  margin: 0.3rem 0;
+  font-size: 0.85rem;
+}
+
+/* ========== FORMULARIOS EN GENERAL ========== */
+.form-group {
+  margin-bottom: 0.8rem;
+}
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: #4a5568;
+}
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+.required {
+  color: #e53e3e;
+  margin-left: 2px;
+}
+
+.order-form {
+  border-top: 2px solid #ffdec9;
+  padding-top: 1rem;
+  margin-top: 0.5rem;
+}
+.order-form h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  color: #2d3748;
+}

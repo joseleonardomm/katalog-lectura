@@ -1,0 +1,92 @@
+.hero-slider-full {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.hero-swiper-full {
+  width: 100%;
+  height: auto;
+}
+
+.hero-slide-full {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  display: flex;
+  padding: 2rem 4rem;
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Posiciones del texto */
+.hero-slide-full.top-left { justify-content: flex-start; align-items: flex-start; }
+.hero-slide-full.top-center { justify-content: center; align-items: flex-start; }
+.hero-slide-full.top-right { justify-content: flex-end; align-items: flex-start; }
+.hero-slide-full.center-left { justify-content: flex-start; align-items: center; }
+.hero-slide-full.center { justify-content: center; align-items: center; }
+.hero-slide-full.center-right { justify-content: flex-end; align-items: center; }
+.hero-slide-full.bottom-left { justify-content: flex-start; align-items: flex-end; }
+.hero-slide-full.bottom-center { justify-content: center; align-items: flex-end; }
+.hero-slide-full.bottom-right { justify-content: flex-end; align-items: flex-end; }
+
+.hero-content-full {
+  position: relative;
+  z-index: 1;
+  max-width: 80%;
+  background-color: rgba(0,0,0,0.5);
+  padding: 1.5rem;
+  border-radius: 16px;
+  color: white;
+  text-align: left;
+}
+
+.hero-content-full h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero-content-full p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Móvil */
+@media (max-width: 768px) {
+  .hero-slide-full {
+    height: 280px;
+    padding: 1rem;
+  }
+  .hero-content-full {
+    max-width: 90%;
+    padding: 0.8rem;
+  }
+  .hero-content-full h2 {
+    font-size: 1.4rem;
+  }
+  .hero-content-full p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-slide-full {
+    height: 500px;
+  }
+}

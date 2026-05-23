@@ -1,0 +1,62 @@
+.inventory-manager {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+.inventory-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+.inventory-topbar h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+.inventory-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+.inventory-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+  overflow-x: auto;
+}
+.inventory-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.15s;
+  min-width: 70px;
+}
+.inventory-tab.active {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 8px rgba(255,107,0,0.3);
+}
+.inventory-tab:hover:not(.active) {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+.tab-icon { font-size: 1.3rem; }
+.tab-label { font-size: 0.65rem; margin-top: 0.2rem; font-weight: 500; }

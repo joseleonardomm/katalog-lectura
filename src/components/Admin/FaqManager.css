@@ -1,0 +1,142 @@
+.faq-manager {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-header h2 {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.btn-save {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.btn-save:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.faq-intro {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.faq-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  padding: 1rem;
+  transition: 0.2s;
+}
+.faq-item:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.faq-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.faq-number {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+.btn-delete-faq {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 4px;
+  border-radius: 50%;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-delete-faq:hover {
+  background: var(--danger-soft);
+}
+
+.faq-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  transition: 0.2s;
+}
+.faq-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.faq-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  font-size: 0.9rem;
+  resize: vertical;
+  transition: 0.2s;
+}
+.faq-textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.btn-add-faq {
+  background: transparent;
+  border: 2px dashed var(--border-light);
+  padding: 0.8rem;
+  border-radius: 20px;
+  width: 100%;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.btn-add-faq:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}

@@ -1,0 +1,10 @@
+.inv-header { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+.inv-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 16px; overflow: hidden; }
+.inv-table th, .inv-table td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); color: var(--text-primary); }
+.inv-table th { background: var(--bg-secondary); color: var(--text-secondary); font-size: 0.8rem; }
+.inv-loading { text-align: center; padding: 2rem; color: var(--text-muted); }
+.btn-edit, .btn-delete { background: none; border: none; cursor: pointer; padding: 0.3rem; border-radius: 50%; }
+.btn-edit { color: var(--info); }
+.btn-edit:hover { background: var(--info-soft); }
+.btn-delete { color: var(--danger); }
+.btn-delete:hover { background: var(--danger-soft); }

@@ -1,0 +1,340 @@
+/* ===== PublicStore.css ===== */
+/* Estilos específicos para la tienda pública */
+
+.public-store {
+  font-family: 'Inter', sans-serif;
+  background: #fefaf5;
+  min-height: 100vh;
+}
+
+/* Grid de productos - estilo Amazon */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+/* En móvil: scroll horizontal suave y controlado */
+@media (max-width: 768px) {
+  .products-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  .product-card {
+    flex: 0 0 260px;
+    scroll-snap-align: start;
+  }
+}
+
+.product-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Para posicionar badge de oferta */
+  height: 100%;        /* Asegura que ocupe todo el alto de la celda del grid */
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border-color: var(--primary, #ff8c42);
+}
+
+.product-image {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f7fafc;
+  cursor: pointer;
+  position: relative;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.02);
+}
+
+/* Insignia de oferta (esquina superior izquierda) */
+.sale-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #e53e3e;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 12px;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.product-info {
+  padding: 0.75rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;            /* Ocupa el espacio restante para empujar los botones hacia abajo */
+}
+
+.product-info h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-info h3:hover {
+  text-decoration: underline;
+  color: var(--primary, #ff8c42);
+}
+
+/* Descripción corta */
+.product-description-short {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Contenedor de precios (normal y oferta) */
+.product-price-wrapper {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.old-price {
+  text-decoration: line-through;
+  font-size: 0.8rem;
+  color: #999;
+  margin-right: 0.3rem;
+}
+
+.sale-price {
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--price-color, #ff8c42);
+}
+
+.product-price {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--price-color, var(--primary, #ff8c42));
+}
+
+/* Mini círculos de colores */
+.color-swatches-mini {
+  display: flex;
+  gap: 4px;
+  margin: 0.2rem 0;
+}
+
+.mini-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.8);
+  display: inline-block;
+}
+
+/* Contenedor de botones en cada tarjeta de producto */
+.product-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;   /* Empuja los botones al fondo de la tarjeta */
+  justify-content: center;
+}
+
+/* Estilos base para ambos botones (mismo tamaño y estilo) */
+.btn-add-to-cart, 
+.btn-whatsapp {
+  flex: 1;
+  padding: 0.6rem 0.4rem;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+
+/* Colores específicos para cada botón */
+.btn-add-to-cart {
+  background: #2c7da0;
+  color: white;
+}
+.btn-add-to-cart:hover {
+  background: #1f5e7a;
+  transform: translateY(-2px);
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: white;
+}
+.btn-whatsapp:hover {
+  background: #128c7e;
+  transform: translateY(-2px);
+}
+
+/* En móvil, los botones se apilan verticalmente y el texto puede ajustarse */
+@media (max-width: 640px) {
+  .product-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .btn-add-to-cart, 
+  .btn-whatsapp {
+    white-space: normal;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+  }
+}
+
+.store-loading, .store-error {
+  text-align: center;
+  padding: 4rem;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.store-error {
+  color: #e53e3e;
+}
+
+.hidden-products-banner {
+  background: #fff3cd;
+  color: #856404;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+.hidden-products-banner a {
+  color: #ff8c42;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Botón de mapa estilo Google Maps (color fijo) */
+.map-button {
+  display: inline-block;
+  background: #4285F4;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  margin-top: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: none;
+  cursor: pointer;
+}
+
+.map-button:hover {
+  background: #2a6bc1;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Botón "Abrir catálogo completo" */
+.full-catalog-button {
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+}
+
+.btn-open-full-catalog {
+  background: var(--button-primary-bg, #ff8c42);
+  color: var(--button-primary-text, white);
+  padding: 12px 24px;
+  border-radius: 40px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: auto;
+  min-width: 250px;
+  max-width: 100%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-open-full-catalog:hover {
+  transform: translateY(-2px);
+  filter: brightness(0.95);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.btn-open-full-catalog:active {
+  transform: translateY(0);
+  filter: brightness(0.9);
+}
+
+@media (max-width: 640px) {
+  .product-info h3 { font-size: 0.75rem; }
+  .product-price { font-size: 0.85rem; }
+  .product-description-short { font-size: 0.7rem; }
+  .btn-open-full-catalog {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    min-width: 200px;
+  }
+  .mini-swatch { width: 12px; height: 12px; }
+}
+
+/* Asegurar que los inputs de la tienda pública no hereden el tema oscuro */
+.public-store input,
+.public-store select,
+.public-store textarea,
+.full-catalog-modal-container input,
+.full-catalog-modal-container select,
+.catalogv2-root input,
+.catalogv2-root select {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #333 !important;
+}
