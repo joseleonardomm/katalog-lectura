@@ -27,7 +27,7 @@ import {
   FaMapMarkerAlt, FaRobot, FaCamera, FaClipboardList, FaTruck,
   FaBoxOpen, FaSignOutAlt, FaCrown, FaLink, FaCopy,
   FaChevronLeft, FaChevronRight, FaInfoCircle, FaFileInvoiceDollar,
-  FaMoneyBillWave, FaBars, FaTimes
+  FaMoneyBillWave, FaBars
 } from 'react-icons/fa';
 import './AdminDashboard.css';
 
@@ -181,11 +181,7 @@ export default function AdminDashboard() {
               <h2>{config.siteName || 'Katalog'}</h2>
             </div>
           )}
-          {/* Botón de cierre para móvil */}
-          <button className="sidebar-toggle mobile-close-btn" onClick={closeMobileMenu}>
-            <FaTimes />
-          </button>
-          {/* Flecha de colapso solo en escritorio */}
+          {/* Flecha de colapso SOLO en escritorio */}
           <button
             className="sidebar-toggle desktop-only"
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -264,9 +260,6 @@ export default function AdminDashboard() {
               <span>{config.siteName || 'Katalog'}</span>
             )}
           </div>
-          <span className="plan-badge desktop-only" onClick={() => setShowPlanModal(true)}>
-            Plan: {planName} {currentPlan !== 'free' && '✓'}
-          </span>
         </header>
 
         <div className="admin-content">
