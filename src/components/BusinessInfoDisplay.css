@@ -1,0 +1,266 @@
+/* ===== SECCIÓN DE INFORMACIÓN DEL NEGOCIO – Estilos Profesionales ===== */
+
+.business-info-display {
+  margin: 2rem 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* ----- BLOQUES DE TEXTO ----- */
+.bid-text-block {
+  padding: 5rem 1rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bid-text-block.bid-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bid-bg-light {
+  background-color: #ffffff;
+}
+
+.bid-bg-dark {
+  background-color: #f9fafb;
+  border-top: 1px solid #edf2f7;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.bid-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.bid-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #1a202c;
+  line-height: 1.2;
+  position: relative;
+  display: inline-block;
+}
+
+.bid-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff8c42, #ff6b00);
+  border-radius: 2px;
+}
+
+.bid-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #4a5568;
+  white-space: pre-wrap;
+  max-width: 800px;
+}
+
+/* ----- BLOQUE DE IMAGEN (SIN EFECTO) ----- */
+.bid-image-block {
+  padding: 3rem 1rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+  text-align: center;
+  background: #ffffff;
+}
+
+.bid-image-block.bid-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Contenedor flexible para alinear la imagen (izquierda, centro, derecha) */
+.bid-image-container {
+  display: flex;
+  width: 100%;
+}
+
+.bid-full-image {
+  max-width: 800px;
+  width: 100%;
+  height: 450px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bid-full-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bid-full-image:hover {
+  transform: scale(1.02);
+}
+
+/* ----- BLOQUE PARALLAX (MARCO ASIMÉTRICO) ----- */
+.bid-parallax-container {
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.bid-parallax-sticky {
+  position: sticky;
+  top: 1rem;
+  height: 45vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2rem 0 2rem 0;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+  background: #f5f5f5;
+}
+
+.bid-parallax-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130%;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.bid-parallax-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: transform;
+  border-radius: inherit;
+}
+
+/* Texto superpuesto (sin fondo, solo sombra) */
+.bid-parallax-overlay {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 1rem;
+  text-align: center;
+  background: transparent;
+  backdrop-filter: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.bid-parallax-title {
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  margin: 0;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+/* ----- LIGHTBOX ----- */
+.bid-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+  animation: fadeIn 0.2s ease;
+}
+
+.bid-lightbox-inner {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  animation: scaleIn 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.bid-lightbox-inner img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.bid-lightbox-close {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.bid-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 768px) {
+  .bid-text-block {
+    padding: 3rem 1rem;
+  }
+  .bid-title {
+    font-size: 1.8rem;
+  }
+  .bid-text {
+    font-size: 1rem;
+  }
+  .bid-image-block {
+    padding: 2rem 0.5rem;
+  }
+  .bid-full-image {
+    height: 300px;
+    border-radius: 8px;
+  }
+  .bid-parallax-sticky {
+    height: 40vh;
+    border-radius: 1.5rem 0 1.5rem 0;
+  }
+  .bid-parallax-title {
+    font-size: 2.2rem;
+  }
+}

@@ -1,0 +1,437 @@
+.business-info-manager {
+  padding: 1.5rem;
+  color: var(--text-primary);
+  padding-bottom: 5rem; /* espacio para el botón flotante */
+}
+
+.bim-header {
+  margin-bottom: 1.5rem;
+}
+
+.bim-header h2 {
+  margin-bottom: 0.5rem;
+}
+
+.bim-description {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Barra de herramientas */
+.bim-toolbar {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.bim-toolbar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Lista de bloques */
+.bim-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Cada bloque */
+.bim-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.bim-block:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-color: var(--accent);
+}
+
+.bim-block.expanded {
+  border-color: var(--accent);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+}
+
+/* Cabecera del acordeón */
+.bim-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  user-select: none;
+}
+
+.bim-block-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.bim-block-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Selector de orden (dropdown) */
+.bim-order-select {
+  flex-shrink: 0;
+}
+
+.order-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 48px;
+  padding: 0.2rem 0.3rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.3rem center;
+  background-size: 16px;
+}
+
+.order-select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+/* Icono del tipo de bloque */
+.bim-block-type-icon {
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* Resumen del título */
+.bim-block-summary {
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+}
+
+/* Botones de editar / cerrar */
+.btn-edit-block,
+.btn-close-block {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-edit-block:hover {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-close-block {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.btn-close-block:hover {
+  background: var(--danger);
+  color: white;
+}
+
+/* Botón de eliminar único */
+.btn-delete-only {
+  background: none;
+  border: none;
+  color: var(--danger);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.btn-delete-only:hover {
+  background: var(--danger-soft);
+}
+
+/* Contenido expandible */
+.bim-block-content {
+  padding: 0 1rem 1rem 1rem;
+  animation: expandIn 0.2s ease;
+}
+
+@keyframes expandIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Campos (input, textarea, select, etc.) */
+.bim-field {
+  margin-bottom: 1rem;
+}
+
+.bim-field label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.bim-field input,
+.bim-field textarea,
+.bim-field select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+/* Imágenes y upload */
+.bim-images {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bim-image-preview {
+  position: relative;
+  width: 120px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.bim-image-preview:hover {
+  transform: scale(1.03);
+  border-color: var(--accent);
+}
+
+.bim-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bim-image-preview .remove-img-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.7rem;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.bim-image-preview .remove-img-btn:hover {
+  background: var(--danger);
+}
+
+.bim-image-preview-large {
+  width: 100%;
+  max-width: 300px;
+  height: 150px;
+}
+
+.parallax-preview {
+  width: 100%;
+  max-width: 400px;
+  height: 120px;
+}
+
+.bim-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--bg-secondary);
+  border: 2px dashed var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.bim-upload-btn:hover {
+  background: var(--bg-hover);
+  border-color: var(--accent);
+  color: var(--text-primary);
+}
+
+.business-info-loading {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+}
+
+.bim-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: normal;
+}
+
+.bim-checkbox input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* Pie del bloque expandido (botón de guardar bloque) */
+.bim-block-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save-block {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.btn-save-block:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+/* Botón flotante general */
+.bim-save-fab {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  border-radius: 40px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.4);
+  transition: all 0.3s;
+  z-index: 100;
+}
+
+.bim-save-fab:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(255, 107, 0, 0.5);
+}
+
+.bim-save-fab:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(255, 107, 0, 0.2);
+}
+
+/* Toast pequeño y sutil (verde neón) */
+.toast-message.success {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #39ff14;
+  color: #0a0f0a;
+  padding: 0.4rem 0.9rem;
+  border-radius: 30px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 2000;
+  box-shadow: 0 2px 8px rgba(57, 255, 20, 0.35);
+  animation: slideInNeon 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 1px solid rgba(57, 255, 20, 0.6);
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes slideInNeon {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Selector de color (para los bloques de texto) */
+.bim-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bim-color-picker input[type="color"] {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-input);
+  cursor: pointer;
+  padding: 2px;
+}
+
+.bim-color-picker input[type="color"]:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.bim-color-value {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+}

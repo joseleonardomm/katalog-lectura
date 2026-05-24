@@ -8,6 +8,7 @@ import FullCategories from './FullCategories';
 import ProductModal from './ProductModal';
 import CartSidebar from './CartSidebar';
 import ChatbotWidget from './ChatbotWidget';
+import BusinessInfoDisplay from './BusinessInfoDisplay'; // ★ NUEVO
 import { getPublicStoreData, getPlanByUid, getPlansConfig } from '../api';
 import './PublicStore.css';
 
@@ -34,8 +35,6 @@ export default function PublicStore() {
   const [rateLoading, setRateLoading] = useState(false);
   const [availableCurrencies, setAvailableCurrencies] = useState([]);
   const [storeUid, setStoreUid] = useState(null);
-
-  // Para ocultar herramientas según el plan
   const [planFeatures, setPlanFeatures] = useState({});
 
   const getUserIdFromSlug = async (slug) => {
@@ -96,12 +95,10 @@ export default function PublicStore() {
         const userPlan = await getPlanByUid(uid);
         setPlan(userPlan);
         
-        // Obtener límite dinámico desde la configuración de planes
         const plansConfig = await getPlansConfig();
         const planLimitValue = plansConfig[userPlan]?.productLimit ?? null;
         const limit = planLimitValue === null ? Infinity : planLimitValue;
         
-        // Guardar features del plan para ocultar herramientas
         setPlanFeatures(plansConfig[userPlan]?.features || {});
         
         const visible = sortedProducts.slice(0, limit);
@@ -355,6 +352,9 @@ export default function PublicStore() {
               </button>
             </div>
           )}
+
+          {/* ★ SECCIÓN DE INFORMACIÓN DEL NEGOCIO (justo después del catálogo) */}
+          <BusinessInfoDisplay uid={storeUid} />
 
           {filteredProducts.length === 0 && (
             <div className="empty-state">

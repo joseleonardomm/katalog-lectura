@@ -724,3 +724,77 @@ export const getGlobalStats = async () => {
     totalRevenue,
   };
 };
+
+// ========== NUEVO: INFORMACIÓN DEL NEGOCIO ==========
+export const getBusinessInfo = async () => {
+  const config = await getConfig();
+  return config?.businessInfo || [];
+};
+
+export const updateBusinessInfo = async (blocks) => {
+  const userId = getUserId();
+  if (!userId) throw new Error('No userId');
+  const configRef = doc(db, `users/${userId}/config`, 'settings');
+  const configSnap = await getDoc(configRef);
+  if (configSnap.exists()) {
+    await updateDoc(configRef, { businessInfo: blocks });
+  } else {
+    await setDoc(configRef, { businessInfo: blocks });
+  }
+  return blocks;
+};
+
+// ========== INFORMACIÓN DE EMPRESA PARA COTIZACIONES ==========
+export const getCompanyInfo = async () => {
+  const userId = getUserId();
+  if (!userId) return null;
+  const configRef = doc(db, `users/${userId}/config`, 'settings');
+  const snap = await getDoc(configRef);
+  if (snap.exists()) {
+    const data = snap.data();
+    return data.companyInfo || null;
+  }
+  return null;
+};
+
+export const updateCompanyInfo = async (companyInfo) => {
+  const userId = getUserId();
+  if (!userId) throw new Error('No userId');
+  const configRef = doc(db, `users/${userId}/config`, 'settings');
+  await updateDoc(configRef, { companyInfo });
+  return companyInfo;
+};
+
+// ========== COTIZACIONES ==========
+export const getQuotes = async () => {
+  const userId = getUserId();
+  if (!userId) return [];
+  const snap = await getDocs(collection(db, `users/${userId}/quotes`));
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+};
+
+export const createQuote = async (quote) => {
+  const userId = getUserId();
+  if (!userId) throw new Error('No userId');
+  const id = Date.now().toString();
+  const newQuote = { id, ...quote, createdAt: new Date().toISOString() };
+  await setDoc(doc(db, `users/${userId}/quotes`, id), newQuote);
+  return newQuote;
+};
+
+export const updateQuote = async (id, quote) => {
+  const userId = getUserId();
+  if (!userId) throw new Error('No userId');
+  await updateDoc(doc(db, `users/${userId}/quotes`, id), {
+    ...quote,
+    updatedAt: new Date().toISOString()
+  });
+  return { id, ...quote };
+};
+
+export const deleteQuote = async (id) => {
+  const userId = getUserId();
+  if (!userId) throw new Error('No userId');
+  await deleteDoc(doc(db, `users/${userId}/quotes`, id));
+  return { success: true };
+};

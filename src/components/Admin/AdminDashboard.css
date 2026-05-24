@@ -97,20 +97,12 @@
   display: flex;
   align-items: center; justify-content: center;
   transition: all 0.2s;
-  animation: togglePulse 2s infinite ease-in-out;
   flex-shrink: 0;
 }
 .sidebar-toggle:hover {
   background: var(--accent);
   color: #fff;
   border-color: var(--accent);
-  animation: none;
-  transform: scale(1.1);
-}
-@keyframes togglePulse {
-  0% { box-shadow: 0 0 0 0 rgba(255,107,0,0.4); }
-  70% { box-shadow: 0 0 0 8px rgba(255,107,0,0); }
-  100% { box-shadow: 0 0 0 0 rgba(255,107,0,0); }
 }
 
 .sidebar-nav {
@@ -185,7 +177,7 @@
 }
 .admin-sidebar.collapsed ~ .admin-main-content { margin-left: 64px; }
 
-/* ========== TARJETAS DE PRODUCTO / SLIDE / CATEGORÍA (fondo oscuro forzado) ========== */
+/* ========== TARJETAS DE PRODUCTO / SLIDE / CATEGORÍA ========== */
 .products-grid,
 .slides-grid,
 .categories-grid {
@@ -291,7 +283,7 @@
 }
 .btn-secondary:hover { background: var(--border-light); border-color: var(--accent); }
 
-/* ========== FORMULARIOS Y INPUTS (solo dentro del panel) ========== */
+/* ========== FORMULARIOS Y INPUTS ========== */
 .admin-dashboard-v2 input,
 .admin-dashboard-v2 select,
 .admin-dashboard-v2 textarea {
@@ -478,16 +470,98 @@ table td {
 ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-/* ========== RESPONSIVE ========== */
+/* ========== MENÚ HAMBURGUESA (MÓVIL) ========== */
+.mobile-hamburger {
+  display: none; /* oculto en escritorio */
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* Solo para escritorio: ocultamos el botón de hamburguesa */
+.desktop-only {
+  display: block;
+}
+
 @media (max-width: 768px) {
-  .admin-sidebar {
-    width: 100%; height: auto; position: relative;
-    flex-direction: row; overflow-x: auto; padding: 0.5rem;
+  .desktop-only {
+    display: none;
   }
-  .admin-sidebar.collapsed { width: 100%; }
-  .sidebar-header, .sidebar-footer, .nav-label, .sidebar-nav-item .nav-label { display: none; }
-  .sidebar-nav { flex-direction: row; gap: 0.3rem; padding: 0; }
-  .sidebar-nav-item { padding: 0.5rem 0.7rem; font-size: 0.75rem; }
-  .admin-main-content { margin-left: 0; padding: 1rem; }
-  .admin-sidebar.collapsed ~ .admin-main-content { margin-left: 0; }
+
+  .mobile-hamburger {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    cursor: pointer;
+    margin-right: auto;
+  }
+
+  /* Sidebar como overlay */
+  .admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    width: 280px;
+    z-index: 200;
+    transition: left 0.3s ease;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  }
+
+  .admin-sidebar.mobile-sidebar-open {
+    left: 0;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 150;
+  }
+
+  /* Forzar que en móvil siempre se vean las etiquetas */
+  .admin-sidebar .sidebar-text,
+  .admin-sidebar .nav-label {
+    display: inline !important;
+  }
+
+  .admin-main-content {
+    margin-left: 0 !important;
+    padding: 1rem;
+  }
+
+  /* Ajustar grid de tarjetas a 1 columna */
+  .products-grid,
+  .slides-grid,
+  .categories-grid,
+  .payment-grid-pro {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tablas con scroll horizontal */
+  .quotes-table-container,
+  .users-table-container,
+  .table-container {
+    overflow-x: auto;
+  }
+
+  /* Modales más anchos */
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  /* Formularios: filas a columnas */
+  .form-row {
+    flex-direction: column;
+  }
 }

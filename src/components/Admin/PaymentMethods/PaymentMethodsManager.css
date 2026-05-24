@@ -1,0 +1,290 @@
+/* ===== GESTOR DE MÉTODOS DE PAGO – DISEÑO PROFESIONAL CON ACORDEÓN ===== */
+.payment-manager-pro {
+  padding: 1.5rem;
+  color: var(--text-primary);
+}
+
+.payment-header-pro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.payment-header-pro h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+  margin: 0 0 0.3rem 0;
+  color: var(--text-primary);
+}
+
+.payment-subtitle {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.payment-grid-pro {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Tarjeta de cada método */
+.payment-card-pro {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.payment-card-pro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--accent, #ff8c42), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.payment-card-pro:hover {
+  border-color: rgba(255, 140, 66, 0.3);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.payment-card-pro:hover::before {
+  opacity: 1;
+}
+
+.payment-card-pro.inactive {
+  opacity: 0.5;
+}
+
+.payment-card-pro.inactive:hover {
+  opacity: 0.7;
+}
+
+.payment-card-pro.expanded {
+  border-color: var(--accent, #ff8c42);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Cabecera compacta */
+.payment-card-header-pro {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.payment-type-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 140, 66, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--accent, #ff8c42);
+  flex-shrink: 0;
+}
+
+.payment-card-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.payment-card-title h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.payment-type-badge-pro {
+  font-size: 0.65rem;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  padding: 0.1rem 0.45rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 0.15rem;
+}
+
+.payment-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.toggle-on {
+  color: var(--success, #38a169);
+  font-size: 1.1rem;
+}
+
+.toggle-off {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+.expand-arrow {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+}
+
+/* Cuerpo expandible */
+.payment-card-body-pro {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  animation: expandIn 0.2s ease;
+}
+
+@keyframes expandIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Formulario dentro del acordeón */
+.form-group-pro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group-pro label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.form-group-pro input,
+.form-group-pro select,
+.form-group-pro textarea {
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.form-group-pro input:focus,
+.form-group-pro select:focus,
+.form-group-pro textarea:focus {
+  border-color: var(--accent, #ff8c42);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.15);
+}
+
+.form-row-pro {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.form-row-pro .form-group-pro {
+  flex: 1;
+  min-width: 130px;
+}
+
+.checkbox-pro label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: normal;
+  color: var(--text-primary);
+}
+
+.toggle-label {
+  font-size: 0.9rem;
+}
+
+/* Pie del acordeón (botones guardar/cancelar) */
+.payment-card-footer-pro {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Botones de acción pequeños */
+.btn-icon-pro {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-icon-pro:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.btn-delete:hover {
+  background: rgba(229, 62, 62, 0.15);
+  color: var(--danger, #e53e3e);
+  border-color: rgba(229, 62, 62, 0.3);
+}
+
+/* Estado vacío */
+.empty-state-pro {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.empty-state-pro p {
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.payment-loading {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+}

@@ -1,11 +1,37 @@
-import { useState } from 'react';
-import { updateConfig, uploadImage } from '../../api';
-import { FaCamera, FaTrash } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+import { getConfig, updateConfig, uploadImage } from '../../api';
+import { FaCamera, FaTrash, FaExclamationTriangle, FaRedo } from 'react-icons/fa';
 
-export default function GeneralSettings({ config, onUpdate }) {
-  const [form, setForm] = useState(config);
+export default function GeneralSettings({ onUpdate, showMessage }) {
+  const [config, setConfig] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
+  const [form, setForm] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+
+  const loadConfig = async () => {
+    setLoading(true);
+    setLoadError(false);
+    try {
+      const data = await getConfig();
+      if (data) {
+        setConfig(data);
+        setForm(data);
+      } else {
+        setLoadError(true);
+      }
+    } catch (err) {
+      console.error('Error al cargar configuración:', err);
+      setLoadError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadConfig();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -29,6 +55,7 @@ export default function GeneralSettings({ config, onUpdate }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!form) return;
     setSaving(true);
     try {
       const settingsToUpdate = {
@@ -46,17 +73,44 @@ export default function GeneralSettings({ config, onUpdate }) {
         if (settingsToUpdate[key] === undefined) delete settingsToUpdate[key];
       });
       await updateConfig(settingsToUpdate);
-      alert('Configuración actualizada correctamente');
+      showMessage?.('success', 'Configuración actualizada correctamente');
       if (onUpdate) await onUpdate();
     } catch (error) {
       console.error('Error al guardar:', error);
-      alert('Error al guardar la configuración.');
+      showMessage?.('error', 'Error al guardar la configuración.');
     } finally {
       setSaving(false);
     }
   };
 
-  if (!config) return <div style={{ color: 'var(--text-secondary)' }}>Cargando configuración...</div>;
+  // Estado de carga
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '4rem 2rem', color: 'var(--text-muted)', gap: '1rem' }}>
+        <div className="loading-spinner"></div>
+        <p>Cargando configuración...</p>
+      </div>
+    );
+  }
+
+  // Error al cargar
+  if (loadError) {
+    return (
+      <div style={{ textAlign: 'center', padding: '4rem 2rem', color: 'var(--text-primary)', maxWidth: '500px', margin: '0 auto' }}>
+        <FaExclamationTriangle style={{ fontSize: '3rem', color: 'var(--danger, #e53e3e)', marginBottom: '1rem' }} />
+        <h3 style={{ marginBottom: '0.5rem' }}>No se pudo cargar la configuración</h3>
+        <p style={{ color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Revisa tu conexión o permisos de Firestore.</p>
+        <button className="btn-primary" onClick={loadConfig}>
+          <FaRedo /> Reintentar
+        </button>
+      </div>
+    );
+  }
+
+  // Si no hay formulario (por si acaso)
+  if (!form) {
+    return null;
+  }
 
   return (
     <form onSubmit={handleSubmit} className="admin-form" style={{ maxWidth: '700px' }}>
@@ -76,7 +130,6 @@ export default function GeneralSettings({ config, onUpdate }) {
         </select>
       </div>
 
-      {/* Toggle para Bolívares */}
       <div className="toggle-group" onClick={() => setForm(prev => ({ ...prev, showBs: !prev.showBs }))}>
         <span className="toggle-label">Mostrar precios en Bolívares (Bs)</span>
         <span className={`toggle-slider ${form.showBs ? 'active' : ''}`}></span>
