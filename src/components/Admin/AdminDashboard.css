@@ -470,26 +470,15 @@ table td {
 ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-/* ========== LOGO MÓVIL ========== */
+/* ========== MENÚ HAMBURGUESA (MÓVIL) ========== */
 .mobile-logo {
   display: none;
-  align-items: center;
-  margin-right: auto;
-  font-weight: 700;
-  color: var(--text-primary);
-  font-size: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.mobile-logo img {
-  max-height: 28px;
-  border-radius: 4px;
-}
-
-/* ========== MENÚ HAMBURGUESA (MÓVIL) ========== */
 .mobile-hamburger {
   display: none !important;
+}
+.mobile-close-btn {
+  display: none;
 }
 .sidebar-overlay {
   display: none;
@@ -500,7 +489,6 @@ table td {
 
 /* ========== RESPONSIVE (MÓVIL) ========== */
 @media (max-width: 768px) {
-  /* Resetear cualquier regla que interfiera */
   .admin-dashboard-v2 {
     flex-direction: column;
   }
@@ -510,7 +498,7 @@ table td {
   }
 
   .mobile-logo {
-    display: flex;
+    display: none; /* No se usa porque el logo está dentro de la sidebar */
   }
 
   .mobile-hamburger {
@@ -532,13 +520,17 @@ table td {
     background: rgba(255,255,255,0.05);
   }
 
+  .mobile-close-btn {
+    display: flex;
+  }
+
   /* Sidebar overlay */
   .admin-sidebar {
     position: fixed;
     top: 0;
     left: -100%;
     height: 100vh;
-    width: 280px !important;
+    width: 260px !important;
     flex-direction: column !important;
     overflow-y: auto;
     overflow-x: hidden;
@@ -571,8 +563,8 @@ table td {
   .sidebar-nav-item {
     width: 100% !important;
     flex-shrink: 0;
-    font-size: 0.9rem;
-    padding: 0.75rem;
+    font-size: 0.88rem;
+    padding: 0.65rem 0.75rem;
   }
 
   /* Etiquetas visibles */
@@ -680,7 +672,7 @@ table td {
     padding: 0.5rem;
   }
 
-  /* Mostrar plan y enlace en la sidebar */
+  /* Plan y enlace visibles */
   .sidebar-store-link,
   .sidebar-plan-info {
     display: flex !important;

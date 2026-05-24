@@ -27,7 +27,7 @@ import {
   FaMapMarkerAlt, FaRobot, FaCamera, FaClipboardList, FaTruck,
   FaBoxOpen, FaSignOutAlt, FaCrown, FaLink, FaCopy,
   FaChevronLeft, FaChevronRight, FaInfoCircle, FaFileInvoiceDollar,
-  FaMoneyBillWave, FaBars
+  FaMoneyBillWave, FaBars, FaTimes
 } from 'react-icons/fa';
 import './AdminDashboard.css';
 
@@ -189,6 +189,10 @@ export default function AdminDashboard() {
           >
             {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
           </button>
+          {/* Botón de cierre SOLO en móvil */}
+          <button className="sidebar-toggle mobile-close-btn" onClick={closeMobileMenu}>
+            <FaTimes />
+          </button>
         </div>
 
         <nav className="sidebar-nav">
@@ -252,14 +256,6 @@ export default function AdminDashboard() {
           <button className="sidebar-toggle mobile-hamburger" onClick={() => setMobileMenuOpen(true)}>
             <FaBars />
           </button>
-          {/* Logo / nombre en la barra superior para móvil */}
-          <div className="mobile-logo">
-            {config.logoUrl ? (
-              <img src={config.logoUrl} alt="Logo" />
-            ) : (
-              <span>{config.siteName || 'Katalog'}</span>
-            )}
-          </div>
         </header>
 
         <div className="admin-content">
