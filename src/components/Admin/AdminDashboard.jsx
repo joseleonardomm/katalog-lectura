@@ -27,7 +27,7 @@ import {
   FaMapMarkerAlt, FaRobot, FaCamera, FaClipboardList, FaTruck,
   FaBoxOpen, FaSignOutAlt, FaCrown, FaLink, FaCopy,
   FaChevronLeft, FaChevronRight, FaInfoCircle, FaFileInvoiceDollar,
-  FaMoneyBillWave, FaBars, FaTimes
+  FaMoneyBillWave, FaBars
 } from 'react-icons/fa';
 import './AdminDashboard.css';
 
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
     <div className="admin-dashboard-v2">
       {mobileMenuOpen && <div className="sidebar-overlay" onClick={closeMobileMenu}></div>}
 
-      <aside className={`admin-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-sidebar-open' : ''}`}>
+      <aside className={`admin-sidebar ${sidebarCollapsed && !mobileMenuOpen ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-sidebar-open' : ''}`}>
         <div className="sidebar-header">
           {config.logoUrl ? (
             <div className="sidebar-logo">
@@ -189,9 +189,9 @@ export default function AdminDashboard() {
           >
             {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
           </button>
-          {/* Botón de cierre SOLO en móvil */}
+          {/* Flecha de cierre SOLO en móvil */}
           <button className="sidebar-toggle mobile-close-btn" onClick={closeMobileMenu}>
-            <FaTimes />
+            <FaChevronLeft />
           </button>
         </div>
 
@@ -215,39 +215,36 @@ export default function AdminDashboard() {
         </nav>
 
         <div className="sidebar-footer">
-          {(!sidebarCollapsed || mobileMenuOpen) && (
-            <>
-              <div className="sidebar-plan-info">
-                <div className="plan-badge" onClick={() => { setShowPlanModal(true); closeMobileMenu(); }}>
-                  <FaCrown className="plan-crown" />
-                  <div>
-                    <span className="plan-name">{planName}</span>
-                    {currentPlan !== 'free' && planStatus === 'active' && (
-                      <span className="plan-date"> Vence: {formatDate(planEndDate)}</span>
-                    )}
-                  </div>
-                </div>
+          {/* En móvil mostramos siempre el footer; en escritorio solo si no está colapsado */}
+          <div className="sidebar-plan-info">
+            <div className="plan-badge" onClick={() => { setShowPlanModal(true); closeMobileMenu(); }}>
+              <FaCrown className="plan-crown" />
+              <div>
+                <span className="plan-name">{planName}</span>
+                {currentPlan !== 'free' && planStatus === 'active' && (
+                  <span className="plan-date"> Vence: {formatDate(planEndDate)}</span>
+                )}
               </div>
+            </div>
+          </div>
 
-              {storeSlug && (
-                <div className="sidebar-store-link">
-                  <FaLink />
-                  <span className="store-url">{storeLink}</span>
-                  <button onClick={copyStoreLink} title="Copiar enlace"><FaCopy /></button>
-                </div>
-              )}
-
-              {isSuper && (
-                <button className="sidebar-super-btn" onClick={() => { navigate('/superadmin/dashboard'); closeMobileMenu(); }}>
-                  Super Admin
-                </button>
-              )}
-
-              <button className="sidebar-logout" onClick={handleLogout}>
-                <FaSignOutAlt /> Cerrar sesión
-              </button>
-            </>
+          {storeSlug && (
+            <div className="sidebar-store-link">
+              <FaLink />
+              <span className="store-url">{storeLink}</span>
+              <button onClick={copyStoreLink} title="Copiar enlace"><FaCopy /></button>
+            </div>
           )}
+
+          {isSuper && (
+            <button className="sidebar-super-btn" onClick={() => { navigate('/superadmin/dashboard'); closeMobileMenu(); }}>
+              Super Admin
+            </button>
+          )}
+
+          <button className="sidebar-logout" onClick={handleLogout}>
+            <FaSignOutAlt /> Cerrar sesión
+          </button>
         </div>
       </aside>
 

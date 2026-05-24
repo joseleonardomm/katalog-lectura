@@ -73,6 +73,13 @@
   overflow-x: hidden;
 }
 .admin-sidebar.collapsed { width: 64px; }
+/* En escritorio colapsado, ocultamos el texto del footer */
+.admin-sidebar.collapsed .sidebar-footer {
+  display: none;
+}
+.admin-sidebar.collapsed .nav-label {
+  display: none;
+}
 
 .sidebar-header {
   display: flex;
@@ -471,21 +478,11 @@ table td {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 /* ========== MENÚ HAMBURGUESA (MÓVIL) ========== */
-.mobile-logo {
-  display: none;
-}
-.mobile-hamburger {
-  display: none !important;
-}
-.mobile-close-btn {
-  display: none;
-}
-.sidebar-overlay {
-  display: none;
-}
-.desktop-only {
-  display: inline-flex;
-}
+.mobile-logo { display: none; }
+.mobile-hamburger { display: none !important; }
+.mobile-close-btn { display: none !important; }  /* Oculto en escritorio */
+.sidebar-overlay { display: none; }
+.desktop-only { display: inline-flex; }
 
 /* ========== RESPONSIVE (MÓVIL) ========== */
 @media (max-width: 768px) {
@@ -498,7 +495,7 @@ table td {
   }
 
   .mobile-logo {
-    display: none; /* No se usa porque el logo está dentro de la sidebar */
+    display: none;
   }
 
   .mobile-hamburger {
@@ -521,18 +518,19 @@ table td {
   }
 
   .mobile-close-btn {
-    display: flex;
+    display: flex !important;
   }
 
-  /* Sidebar overlay */
+  /* Sidebar como overlay */
   .admin-sidebar {
     position: fixed;
     top: 0;
     left: -100%;
     height: 100vh;
+    height: 100dvh; /* mejor en móviles */
     width: 260px !important;
     flex-direction: column !important;
-    overflow-y: auto;
+    overflow-y: auto !important;
     overflow-x: hidden;
     z-index: 200;
     transition: left 0.3s ease;
@@ -541,6 +539,10 @@ table td {
 
   .admin-sidebar.mobile-sidebar-open {
     left: 0;
+  }
+
+  .admin-sidebar .sidebar-footer {
+    display: flex !important;  /* siempre visible en móvil */
   }
 
   .sidebar-overlay {
@@ -554,32 +556,32 @@ table td {
     z-index: 150;
   }
 
-  /* Forzar que los items de navegación se vean bien */
   .sidebar-nav {
+    flex: 1 0 auto;  /* permite que ocupe espacio pero no impida scroll */
+    overflow-y: visible; /* el scroll lo maneja la sidebar completa */
+    padding: 0.5rem;
     flex-direction: column !important;
     flex-wrap: nowrap;
-    padding: 0.5rem;
   }
+
   .sidebar-nav-item {
     width: 100% !important;
     flex-shrink: 0;
-    font-size: 0.88rem;
-    padding: 0.65rem 0.75rem;
+    font-size: 0.9rem;
+    padding: 0.7rem 0.8rem;
   }
 
-  /* Etiquetas visibles */
   .admin-sidebar .nav-label {
     display: inline !important;
   }
 
-  /* Contenido principal */
   .admin-main-content {
     margin-left: 0 !important;
     padding: 1rem;
     width: 100%;
   }
 
-  /* Forzar todos los grids a una columna */
+  /* Forzar grids a una columna */
   .products-grid,
   .slides-grid,
   .categories-grid,
@@ -589,7 +591,6 @@ table td {
     gap: 1rem;
   }
 
-  /* Tarjetas de producto / slide */
   .product-card,
   .slide-card,
   .catalog-item {
@@ -602,7 +603,6 @@ table td {
     height: 200px;
   }
 
-  /* Barra de búsqueda y filtros */
   .search-filter-bar {
     flex-direction: column;
     gap: 0.5rem;
@@ -614,7 +614,6 @@ table td {
     min-width: auto;
   }
 
-  /* Tablas */
   .quotes-table-container,
   .users-table-container,
   .table-container {
@@ -623,7 +622,6 @@ table td {
     font-size: 0.8rem;
   }
 
-  /* Modales */
   .modal-content {
     width: 95%;
     max-height: 90vh;
@@ -632,7 +630,6 @@ table td {
     border-radius: 16px;
   }
 
-  /* Formularios en columna */
   .form-row {
     flex-direction: column;
     gap: 0.5rem;
@@ -641,7 +638,6 @@ table td {
     width: 100%;
   }
 
-  /* Botones de acción en tarjetas */
   .product-actions,
   .slide-actions {
     flex-direction: column;
@@ -654,7 +650,6 @@ table td {
     font-size: 0.9rem;
   }
 
-  /* Header superior */
   .admin-topbar {
     padding: 0.5rem 0.8rem;
     display: flex;
@@ -667,14 +662,11 @@ table td {
     z-index: 90;
   }
 
-  /* Reducir padding en contenido */
   .admin-content {
     padding: 0.5rem;
   }
 
-  /* Plan y enlace visibles */
-  .sidebar-store-link,
-  .sidebar-plan-info {
+  .sidebar-store-link {
     display: flex !important;
   }
 }
