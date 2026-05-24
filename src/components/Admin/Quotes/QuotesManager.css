@@ -462,21 +462,27 @@
 
   .quotes-header h2 {
     margin-bottom: 0;
+    font-size: 1.2rem;
   }
 
   .quotes-header > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.5rem;
+    width: 100%;
   }
 
   .quotes-header button {
-    width: 100%;
+    flex: 1;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
   }
 
   .quotes-filters {
     flex-direction: column;
     gap: 0.5rem;
+    align-items: stretch;
   }
 
   .search-bar {
@@ -502,7 +508,7 @@
     -webkit-overflow-scrolling: touch;
   }
   .quotes-table {
-    min-width: 600px; /* asegura scroll si la tabla es más ancha */
+    min-width: 600px;
   }
 
   .actions-cell {
@@ -511,10 +517,13 @@
 
   /* Modal del formulario */
   .quote-modal {
-    width: 95%;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0;
     max-height: 90vh;
     overflow-y: auto;
     padding: 1rem;
+    margin: 0;
   }
 
   .form-section {
@@ -550,8 +559,11 @@
 
   /* Modal de vista previa */
   .preview-modal {
-    width: 95%;
-    padding: 0.8rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0;
+    padding: 1rem;
+    margin: 0;
   }
 
   .quote-preview-document {
@@ -569,7 +581,7 @@
   }
 
   .preview-table {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   .preview-table th,
@@ -590,9 +602,10 @@
   }
 
   /* Modal de configuración de empresa */
-  .modal-content {
-    width: 95%;
+  .modal-backdrop .modal-content {
+    width: 95% !important;
     max-height: 90vh;
     padding: 1rem;
+    border-radius: 16px;
   }
 }
