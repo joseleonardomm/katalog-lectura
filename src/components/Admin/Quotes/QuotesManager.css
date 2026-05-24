@@ -447,3 +447,152 @@
   color: var(--text-secondary);
   font-family: monospace;
 }
+
+/* ========== RESPONSIVE PARA MÓVIL ========== */
+@media (max-width: 768px) {
+  .quotes-manager {
+    padding: 0.8rem;
+  }
+
+  .quotes-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .quotes-header h2 {
+    margin-bottom: 0;
+  }
+
+  .quotes-header > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .quotes-header button {
+    width: 100%;
+  }
+
+  .quotes-filters {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-bar {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .status-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .btn-chip {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Tabla con scroll horizontal */
+  .quotes-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quotes-table {
+    min-width: 600px; /* asegura scroll si la tabla es más ancha */
+  }
+
+  .actions-cell {
+    flex-wrap: nowrap;
+  }
+
+  /* Modal del formulario */
+  .quote-modal {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  .form-section {
+    padding: 0.8rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group {
+    min-width: 100%;
+    flex: auto;
+  }
+
+  .form-group.flex-2 {
+    flex: auto;
+  }
+
+  .item-row {
+    flex-wrap: wrap;
+  }
+
+  .item-row .form-group {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .totals-section .form-group {
+    max-width: 100%;
+  }
+
+  /* Modal de vista previa */
+  .preview-modal {
+    width: 95%;
+    padding: 0.8rem;
+  }
+
+  .quote-preview-document {
+    padding: 1rem;
+  }
+
+  .preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .preview-title h1 {
+    font-size: 2rem;
+  }
+
+  .preview-table {
+    font-size: 0.8rem;
+  }
+
+  .preview-table th,
+  .preview-table td {
+    padding: 0.5rem;
+  }
+
+  .preview-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .preview-actions > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Modal de configuración de empresa */
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+    padding: 1rem;
+  }
+}
