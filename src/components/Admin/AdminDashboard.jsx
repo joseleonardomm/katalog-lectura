@@ -168,7 +168,6 @@ export default function AdminDashboard() {
 
   return (
     <div className="admin-dashboard-v2">
-      {/* Overlay para cerrar menú en móvil */}
       {mobileMenuOpen && <div className="sidebar-overlay" onClick={closeMobileMenu}></div>}
 
       <aside className={`admin-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-sidebar-open' : ''}`}>
@@ -252,12 +251,6 @@ export default function AdminDashboard() {
           <button className="sidebar-toggle mobile-hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             <FaBars />
           </button>
-          <button className="sidebar-toggle desktop-only" onClick={() => setSidebarCollapsed(!sidebarCollapsed)}>
-            {sidebarCollapsed ? '▶' : '◀'}
-          </button>
-          <span className="plan-badge" onClick={() => setShowPlanModal(true)}>
-            Plan: {plan.toUpperCase() !== 'FREE' ? plan.toUpperCase() : 'Gratis'} {plan !== 'free' && '✓'}
-          </span>
         </header>
 
         <div className="admin-content">

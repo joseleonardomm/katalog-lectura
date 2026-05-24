@@ -471,26 +471,25 @@ table td {
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
 /* ========== MENÚ HAMBURGUESA (MÓVIL) ========== */
+/* Oculto en escritorio por defecto */
 .mobile-hamburger {
-  display: none; /* oculto en escritorio */
+  display: none !important;
 }
-
 .sidebar-overlay {
   display: none;
 }
-
-/* Solo para escritorio: ocultamos el botón de hamburguesa */
 .desktop-only {
-  display: block;
+  display: inline-flex; /* visible en escritorio */
 }
 
+/* ========== RESPONSIVE (MÓVIL) ========== */
 @media (max-width: 768px) {
   .desktop-only {
-    display: none;
+    display: none; /* oculta flechas de colapso en móvil */
   }
 
   .mobile-hamburger {
-    display: flex;
+    display: flex !important; /* se muestra el botón de hamburguesa */
     align-items: center;
     background: none;
     border: none;
