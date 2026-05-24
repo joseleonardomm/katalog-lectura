@@ -490,23 +490,24 @@ table td {
   .mobile-hamburger {
     display: flex !important;
     align-items: center;
-    justify-content: center;
     background: none;
     border: none;
     color: var(--text-secondary);
     font-size: 1.3rem;
     cursor: pointer;
-    padding: 0.5rem;
     margin-right: auto;
   }
 
-  /* Sidebar como overlay */
+  /* Sidebar como overlay VERTICAL forzado */
   .admin-sidebar {
     position: fixed;
     top: 0;
     left: -100%;
     height: 100vh;
     width: 280px;
+    flex-direction: column !important;  /* anula cualquier row */
+    overflow-y: auto;
+    overflow-x: hidden;
     z-index: 200;
     transition: left 0.3s ease;
     box-shadow: 2px 0 10px rgba(0,0,0,0.3);
@@ -514,6 +515,8 @@ table td {
 
   .admin-sidebar.mobile-sidebar-open {
     left: 0;
+    width: 280px !important;            /* ignora la clase collapsed */
+    flex-direction: column !important;
   }
 
   .sidebar-overlay {
@@ -527,7 +530,18 @@ table td {
     z-index: 150;
   }
 
-  /* Forzar etiquetas visibles en móvil */
+  /* Forzar que el nav y los items sean columna */
+  .sidebar-nav {
+    flex-direction: column !important;
+    flex-wrap: nowrap;
+  }
+
+  .sidebar-nav-item {
+    width: 100% !important;
+    flex-shrink: 0;
+  }
+
+  /* Etiquetas visibles */
   .admin-sidebar .sidebar-text,
   .admin-sidebar .nav-label {
     display: inline !important;
@@ -538,7 +552,7 @@ table td {
     padding: 1rem;
   }
 
-  /* Ajustar grids de tarjetas a 1 columna */
+  /* Ajustar grid de tarjetas a 1 columna */
   .products-grid,
   .slides-grid,
   .categories-grid,
@@ -546,7 +560,7 @@ table td {
     grid-template-columns: 1fr !important;
   }
 
-  /* Reducir tamaño de fuente en títulos */
+  /* Reducir tamaño de fuente */
   .product-info h3,
   .slide-info h3,
   .product-card h3,
