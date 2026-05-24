@@ -470,7 +470,7 @@ table td {
 ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
-/* ========== LOGO MÓVIL (aparece en la barra superior) ========== */
+/* ========== LOGO MÓVIL ========== */
 .mobile-logo {
   display: none;
   align-items: center;
@@ -500,8 +500,13 @@ table td {
 
 /* ========== RESPONSIVE (MÓVIL) ========== */
 @media (max-width: 768px) {
+  /* Resetear cualquier regla que interfiera */
+  .admin-dashboard-v2 {
+    flex-direction: column;
+  }
+
   .desktop-only {
-    display: none;
+    display: none !important;
   }
 
   .mobile-logo {
@@ -511,33 +516,39 @@ table td {
   .mobile-hamburger {
     display: flex !important;
     align-items: center;
+    justify-content: center;
     background: none;
     border: none;
     color: var(--text-secondary);
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     cursor: pointer;
     margin-right: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .mobile-hamburger:active {
+    background: rgba(255,255,255,0.05);
   }
 
-  /* Sidebar como overlay VERTICAL forzado */
+  /* Sidebar overlay */
   .admin-sidebar {
     position: fixed;
     top: 0;
     left: -100%;
     height: 100vh;
-    width: 280px;
+    width: 280px !important;
     flex-direction: column !important;
     overflow-y: auto;
     overflow-x: hidden;
     z-index: 200;
     transition: left 0.3s ease;
-    box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+    box-shadow: 2px 0 12px rgba(0,0,0,0.4);
   }
 
   .admin-sidebar.mobile-sidebar-open {
     left: 0;
-    width: 280px !important;
-    flex-direction: column !important;
   }
 
   .sidebar-overlay {
@@ -551,54 +562,59 @@ table td {
     z-index: 150;
   }
 
-  /* Forzar que el nav y los items sean columna */
+  /* Forzar que los items de navegación se vean bien */
   .sidebar-nav {
     flex-direction: column !important;
     flex-wrap: nowrap;
+    padding: 0.5rem;
   }
-
   .sidebar-nav-item {
     width: 100% !important;
     flex-shrink: 0;
+    font-size: 0.9rem;
+    padding: 0.75rem;
   }
 
   /* Etiquetas visibles */
-  .admin-sidebar .sidebar-text,
   .admin-sidebar .nav-label {
     display: inline !important;
   }
 
+  /* Contenido principal */
   .admin-main-content {
     margin-left: 0 !important;
     padding: 1rem;
+    width: 100%;
   }
 
-  /* Ajustar grid de tarjetas a 1 columna */
+  /* Forzar todos los grids a una columna */
   .products-grid,
   .slides-grid,
   .categories-grid,
-  .payment-grid-pro {
+  .payment-grid-pro,
+  .admin-content [class$="-grid"] {
     grid-template-columns: 1fr !important;
+    gap: 1rem;
   }
 
-  /* Reducir tamaño de fuente */
-  .product-info h3,
-  .slide-info h3,
-  .product-card h3,
-  .slide-card h3 {
-    font-size: 0.9rem !important;
+  /* Tarjetas de producto / slide */
+  .product-card,
+  .slide-card,
+  .catalog-item {
+    max-width: 100%;
+    margin: 0;
   }
 
-  .product-price {
-    font-size: 1rem !important;
+  .product-image-preview,
+  .slide-image-preview {
+    height: 200px;
   }
 
-  /* Barra de búsqueda y filtros en columna */
+  /* Barra de búsqueda y filtros */
   .search-filter-bar {
     flex-direction: column;
     gap: 0.5rem;
   }
-
   .search-filter-bar input,
   .search-filter-bar select,
   .search-filter-bar button {
@@ -606,38 +622,39 @@ table td {
     min-width: auto;
   }
 
-  /* Tablas con scroll horizontal */
+  /* Tablas */
   .quotes-table-container,
   .users-table-container,
   .table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    font-size: 0.8rem;
   }
 
-  /* Modales más anchos */
+  /* Modales */
   .modal-content {
     width: 95%;
     max-height: 90vh;
     overflow-y: auto;
     padding: 1.5rem;
+    border-radius: 16px;
   }
 
-  /* Formularios: filas a columnas */
+  /* Formularios en columna */
   .form-row {
     flex-direction: column;
+    gap: 0.5rem;
   }
-
   .form-group {
     width: 100%;
   }
 
-  /* Ajustar botones de acción en tarjetas */
+  /* Botones de acción en tarjetas */
   .product-actions,
   .slide-actions {
     flex-direction: column;
     gap: 0.3rem;
   }
-
   .product-actions button,
   .slide-actions button {
     width: 100%;
@@ -645,21 +662,27 @@ table td {
     font-size: 0.9rem;
   }
 
-  /* Reducir padding en secciones */
+  /* Header superior */
+  .admin-topbar {
+    padding: 0.5rem 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+  }
+
+  /* Reducir padding en contenido */
   .admin-content {
     padding: 0.5rem;
   }
 
-  /* Ajustar header superior */
-  .admin-topbar {
-    padding: 0.5rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  /* Mostrar enlace de tienda y plan (sin ocultar) */
-  .sidebar-store-link {
-    display: flex;
+  /* Mostrar plan y enlace en la sidebar */
+  .sidebar-store-link,
+  .sidebar-plan-info {
+    display: flex !important;
   }
 }
