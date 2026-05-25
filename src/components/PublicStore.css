@@ -3,11 +3,8 @@
 
 .public-store {
   font-family: 'Inter', sans-serif;
-  background: #fefaf5;
-  min-height: 100vh;
 }
 
-/* Grid de productos - estilo Amazon */
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -15,7 +12,7 @@
   margin: 2rem 0;
 }
 
-/* En móvil: scroll horizontal suave y controlado */
+/* MÓVIL – scroll horizontal con tarjetas igualadas */
 @media (max-width: 768px) {
   .products-grid {
     display: flex;
@@ -26,10 +23,15 @@
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    align-items: stretch;        /* ← todas las tarjetas a la misma altura */
   }
+
   .product-card {
     flex: 0 0 260px;
     scroll-snap-align: start;
+    height: auto;                /* ← anula el height:100% de escritorio */
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -42,8 +44,8 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.02);
   display: flex;
   flex-direction: column;
-  position: relative; /* Para posicionar badge de oferta */
-  height: 100%;        /* Asegura que ocupe todo el alto de la celda del grid */
+  position: relative;
+  height: 100%;                 /* solo escritorio (grid) */
 }
 
 .product-card:hover {
@@ -71,7 +73,6 @@
   transform: scale(1.02);
 }
 
-/* Insignia de oferta (esquina superior izquierda) */
 .sale-badge {
   position: absolute;
   top: 8px;
@@ -94,7 +95,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  flex: 1;            /* Ocupa el espacio restante para empujar los botones hacia abajo */
+  flex: 1;                      /* ← ocupa el espacio sobrante */
 }
 
 .product-info h3 {
@@ -105,6 +106,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--product-text, #2d3748);
 }
 
 .product-info h3:hover {
@@ -112,10 +114,9 @@
   color: var(--primary, #ff8c42);
 }
 
-/* Descripción corta */
 .product-description-short {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--product-text, #666);
   margin: 0;
   line-height: 1.3;
   display: -webkit-box;
@@ -124,7 +125,6 @@
   overflow: hidden;
 }
 
-/* Contenedor de precios (normal y oferta) */
 .product-price-wrapper {
   display: flex;
   align-items: baseline;
@@ -152,7 +152,6 @@
   color: var(--price-color, var(--primary, #ff8c42));
 }
 
-/* Mini círculos de colores */
 .color-swatches-mini {
   display: flex;
   gap: 4px;
@@ -168,16 +167,14 @@
   display: inline-block;
 }
 
-/* Contenedor de botones en cada tarjeta de producto */
 .product-buttons {
   display: flex;
   gap: 0.75rem;
-  margin-top: auto;   /* Empuja los botones al fondo de la tarjeta */
+  margin-top: auto;             /* ← botones siempre al fondo */
   justify-content: center;
 }
 
-/* Estilos base para ambos botones (mismo tamaño y estilo) */
-.btn-add-to-cart, 
+.btn-add-to-cart,
 .btn-whatsapp {
   flex: 1;
   padding: 0.6rem 0.4rem;
@@ -195,7 +192,6 @@
   white-space: nowrap;
 }
 
-/* Colores específicos para cada botón */
 .btn-add-to-cart {
   background: #2c7da0;
   color: white;
@@ -214,13 +210,12 @@
   transform: translateY(-2px);
 }
 
-/* En móvil, los botones se apilan verticalmente y el texto puede ajustarse */
 @media (max-width: 640px) {
   .product-buttons {
     flex-direction: column;
     gap: 0.5rem;
   }
-  .btn-add-to-cart, 
+  .btn-add-to-cart,
   .btn-whatsapp {
     white-space: normal;
     padding: 0.5rem;
@@ -254,7 +249,6 @@
   text-decoration: underline;
 }
 
-/* Botón de mapa estilo Google Maps (color fijo) */
 .map-button {
   display: inline-block;
   background: #4285F4;
@@ -270,22 +264,18 @@
   border: none;
   cursor: pointer;
 }
-
 .map-button:hover {
   background: #2a6bc1;
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-/* Botón "Abrir catálogo completo" */
 .full-catalog-button {
   text-align: center;
   margin: 1.5rem 0 1rem;
 }
 
 .btn-open-full-catalog {
-  background: var(--button-primary-bg, #ff8c42);
-  color: var(--button-primary-text, white);
   padding: 12px 24px;
   border-radius: 40px;
   border: none;
@@ -326,7 +316,10 @@
   .mini-swatch { width: 12px; height: 12px; }
 }
 
-/* Asegurar que los inputs de la tienda pública no hereden el tema oscuro */
+.section-title {
+  color: var(--section-title, #1e1e2a);
+}
+
 .public-store input,
 .public-store select,
 .public-store textarea,

@@ -3,9 +3,7 @@
 .catalogv2-root {
   font-family: 'Inter', system-ui, sans-serif;
   min-height: 100vh;
-  background: #f8f9fa;
-  --primary: #ff8c42;
-  --primary-light: #fff3ea;
+  /* El fondo se asigna con la variable --store-bg */
 }
 
 /* Loading & Error */
@@ -22,7 +20,6 @@
 .catalogv2-topbar {
   position: sticky;
   top: 0;
-  background: white;
   padding: 0.8rem 2rem;
   display: flex;
   align-items: center;
@@ -57,7 +54,6 @@
 .catalogv2-title {
   font-size: 1.4rem;
   font-weight: 700;
-  color: #1a202c;
   margin: 0;
   letter-spacing: -0.3px;
 }
@@ -66,7 +62,7 @@
   position: relative;
   font-size: 1.4rem;
   cursor: pointer;
-  background: var(--primary-light);
+  background: var(--primary-light, #fff3ea);
   width: 42px;
   height: 42px;
   display: flex;
@@ -277,7 +273,7 @@
 .catalogv2-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.08);
-  border-color: var(--primary-light);
+  border-color: var(--primary-light, #fff3ea);
 }
 
 .card-image {
@@ -325,13 +321,11 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #1a202c;
 }
 
-/* Descripción corta (como en PublicStore) */
+/* Descripción corta */
 .card-description {
   font-size: 0.75rem;
-  color: #666;
   margin: 0 0 0.4rem;
   line-height: 1.3;
   display: -webkit-box;
@@ -373,10 +367,9 @@
 }
 
 .card-add-btn {
-  margin-top: auto; /* Empuja el botón hacia abajo */
+  margin-top: auto;
   width: 100%;
   padding: 10px;
-  background: var(--primary);
   color: white;
   border: none;
   border-radius: 20px;

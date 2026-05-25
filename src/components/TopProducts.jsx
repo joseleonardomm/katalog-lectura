@@ -9,7 +9,7 @@ function TopProducts({ products, formatPrice, onProductClick, config, currency, 
   if (!products || products.length === 0) return null;
   const primaryColor = config?.primaryColor || '#ff8c42';
 
-  // Función interna para formatear precios según la moneda seleccionada
+  // Función para formatear precios según moneda
   const formatProductPrice = (price) => {
     const num = Number(price);
     if (isNaN(num)) return '0.00';
@@ -18,10 +18,9 @@ function TopProducts({ products, formatPrice, onProductClick, config, currency, 
     return `$${num.toFixed(2)}`;
   };
 
-  const getFirstImage = (product) => {
-    if (product.colors?.[0]?.images?.[0]) return product.colors[0].images[0];
-    if (product.images?.[0]) return product.images[0];
-    return 'https://via.placeholder.com/300';
+  const getEffectivePrice = (product) => {
+    if (product.isOnSale && product.salePrice && product.salePrice < product.price) return product.salePrice;
+    return product.price;
   };
 
   const topProducts = [...products]
@@ -32,7 +31,10 @@ function TopProducts({ products, formatPrice, onProductClick, config, currency, 
 
   return (
     <div className="top-products-section">
-      <div className="section-title">🔥 Los más vendidos</div>
+      {/* 🔻 Título con color directo de la configuración */}
+      <div className="section-title" style={{ color: config?.sectionTitleColor || '#1e1e2a' }}>
+        🔥 Los más vendidos
+      </div>
       <Swiper
         modules={[Navigation]}
         spaceBetween={20}
@@ -46,23 +48,21 @@ function TopProducts({ products, formatPrice, onProductClick, config, currency, 
         className="top-products-swiper"
       >
         {topProducts.map((product) => {
-          const effectivePrice = product.offerPrice || product.basePrice || 0;
-          const firstImage = getFirstImage(product);
-
+          const effectivePrice = getEffectivePrice(product);
+          const firstImage = product.images?.[0] || (product.colors?.[0]?.images?.[0]) || 'https://via.placeholder.com/300';
           return (
             <SwiperSlide key={product.id}>
               <div className="product-card" onClick={() => onProductClick?.(product)}>
                 <div className="product-image">
                   <img src={firstImage} alt={product.name} loading="lazy" />
-                  {product.isOnOffer && <span className="offer-badge">Oferta</span>}
                 </div>
                 <div className="product-info">
                   <h4>{product.name}</h4>
                   <div className="product-price-wrapper">
-                    {product.isOnOffer ? (
+                    {product.isOnSale ? (
                       <>
-                        <span className="old-price">{formatProductPrice(product.basePrice)}</span>
-                        <span className="sale-price" style={{ color: primaryColor }}>
+                        <span className="old-price">{formatProductPrice(product.price)}</span>
+                        <span className="sale-price" style={{ color: config?.priceColor || primaryColor }}>
                           {formatProductPrice(effectivePrice)}
                         </span>
                       </>

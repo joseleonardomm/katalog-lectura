@@ -8,7 +8,7 @@
   gap: 2rem;
 }
 
-/* En móvil: scroll horizontal para el catálogo */
+/* MÓVIL – scroll horizontal con tarjetas igualadas */
 @media (max-width: 768px) {
   .catalog-grid {
     display: flex;
@@ -17,10 +17,15 @@
     gap: 1rem;
     padding-bottom: 0.5rem;
     scrollbar-width: thin;
+    align-items: stretch;        /* ← todas las tarjetas se estiran a la misma altura */
   }
+
   .catalog-item {
     flex: 0 0 200px;
     scroll-snap-align: start;
+    height: auto;                /* ← anula cualquier altura fija */
+    display: flex;
+    flex-direction: column;      /* estructura interna flexible */
   }
 }
 
@@ -59,6 +64,9 @@
 
 .catalog-info {
   padding: 1rem;
+  flex: 1;                      /* ← ocupa el espacio restante para empujar el botón abajo */
+  display: flex;
+  flex-direction: column;
 }
 
 .catalog-info h4 {
@@ -79,7 +87,7 @@
 }
 
 .quick-view {
-  margin-top: 0.75rem;
+  margin-top: auto;              /* ← botón siempre en la parte inferior */
   width: 100%;
   padding: 8px;
   font-size: 0.8rem;

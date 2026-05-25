@@ -241,15 +241,37 @@ export default function FullCatalogPageV2() {
   if (error) return <div className="catalogv2-error">{error}</div>;
   if (!config) return <div className="catalogv2-error">Configuración no encontrada</div>;
 
-  const primaryColor = config.primaryColor || '#ff8c42';
+  // ✅ Variables de apariencia completas
+  const styleVariables = {
+    '--primary': config.primaryColor || '#ff8c42',
+    '--secondary': config.secondaryColor || '#e06e1a',
+    '--store-bg': config.storeBackgroundColor || '#f8f9fa',
+    '--header-text': config.headerTextColor || '#1e1e2a',
+    '--header-bg': config.headerBgColor || '#ffffff',
+    '--footer-text': config.footerTextColor || '#dddddd',
+    '--footer-bg': config.footerBgColor || '#1e1e2a',
+    '--footer-title': config.footerTitleColor || '#ffffff',
+    '--footer-subtitle': config.footerSubtitleColor || '#a0a0b8',
+    '--section-title': config.sectionTitleColor || '#1e1e2a',
+    '--category-title': config.categoryTitleColor || '#ffffff',
+    '--product-text': config.productTextColor || '#2d3748',
+    '--price-color': config.priceColor || config.primaryColor || '#ff8c42',
+    '--catalog-btn-bg': config.catalogButtonBg || config.primaryColor || '#ff6b00',
+    '--catalog-btn-text': config.catalogButtonText || '#ffffff',
+    '--button-primary-bg': config.buttonPrimaryBg || config.primaryColor || '#ff8c42',
+    '--button-primary-text': config.buttonPrimaryText || '#ffffff',
+    '--button-secondary-bg': config.buttonSecondaryBg || '#edf2f7',
+    '--button-secondary-text': config.buttonSecondaryText || '#4a5568',
+  };
 
   return (
-    <div className="catalogv2-root" style={{ '--primary': primaryColor }}>
-      <header className="catalogv2-topbar">
-        <button className="catalogv2-back-btn" onClick={() => navigate(`/tienda/${slug}`)}>
+    <div className="catalogv2-root" style={{ backgroundColor: 'var(--store-bg)' }}>
+      <style>{`:root { ${Object.entries(styleVariables).map(([k,v]) => `${k}: ${v};`).join('\n')} }`}</style>
+      <header className="catalogv2-topbar" style={{ backgroundColor: 'var(--header-bg)', color: 'var(--header-text)' }}>
+        <button className="catalogv2-back-btn" onClick={() => navigate(`/tienda/${slug}`)} style={{ color: 'var(--header-text)' }}>
           ← Volver a la tienda
         </button>
-        <h1 className="catalogv2-title">Catálogo completo</h1>
+        <h1 className="catalogv2-title" style={{ color: 'var(--header-text)' }}>Catálogo completo</h1>
         <div className="catalogv2-cart-icon" onClick={() => setIsCartOpen(true)}>
           🛒 {cart.reduce((s, i) => s + i.quantity, 0) > 0 && <span className="cart-count">{cart.reduce((s, i) => s + i.quantity, 0)}</span>}
         </div>
@@ -343,9 +365,9 @@ export default function FullCatalogPageV2() {
                     )}
                   </div>
                   <div className="card-info">
-                    <h3 className="card-name">{product.name}</h3>
+                    <h3 className="card-name" style={{ color: 'var(--product-text)' }}>{product.name}</h3>
                     {product.description && (
-                      <p className="card-description">
+                      <p className="card-description" style={{ color: 'var(--product-text)' }}>
                         {product.description.length > 80
                           ? product.description.substring(0, 80) + '…'
                           : product.description}
@@ -357,12 +379,12 @@ export default function FullCatalogPageV2() {
                           <span className="old-price">
                             {formatPrice({ price: product.basePrice, priceCurrency: product.priceCurrency })}
                           </span>
-                          <span className="current-price" style={{ color: primaryColor }}>
+                          <span className="current-price" style={{ color: 'var(--price-color)' }}>
                             {formatPrice({ price: product.salePrice, priceCurrency: product.priceCurrency })}
                           </span>
                         </>
                       ) : (
-                        <span className="current-price" style={{ color: primaryColor }}>
+                        <span className="current-price" style={{ color: 'var(--price-color)' }}>
                           {formatPrice({ price: effective, priceCurrency: product.priceCurrency })}
                         </span>
                       )}
@@ -381,6 +403,7 @@ export default function FullCatalogPageV2() {
                     )}
                     <button
                       className="card-add-btn"
+                      style={{ backgroundColor: 'var(--catalog-btn-bg)', color: 'var(--catalog-btn-text)' }}
                       onClick={(e) => {
                         e.stopPropagation();
                         addToCart(product);

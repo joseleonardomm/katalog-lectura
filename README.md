@@ -28,10 +28,15 @@ y envía su pedido directamente por WhatsApp.
 - **Formulario de pedido personalizable** que el cliente llena antes de enviar su
   pedido por WhatsApp.
 - **Chatbot de preguntas frecuentes** (widget flotante) gestionable desde el panel.
-- **Conversor de moneda**: el cliente puede ver precios en USD, EUR o Bolívares (tasa
-  configurable por el administrador).
+- **Conversor de moneda**: el cliente puede ver precios en USD, EUR, BS y otras monedas.
 - Catálogo completo (página independiente) con filtros avanzados, vista de ofertas, etc.
-- Diseño 100 % responsive (móvil, tablet, escritorio).
+- **Sección de información del negocio**: bloques personalizables de texto, imágenes y
+  parallax con opciones de color y alineación.
+- **Métodos de pago visibles en el carrito**, con datos bancarios y opción de copia.
+- **Aceptación de Términos y Condiciones** al registrarse.
+- **Diseño responsive** optimizado para escritorio y dispositivos móviles.
+- **Carrito con overlay oscuro** y bloqueo de scroll del fondo.
+- **Scroll horizontal en productos** en móviles.
 
 ### 🔧 Panel de administración
 - **Interfaz oscura profesional** con barra lateral colapsable y navegación intuitiva.
@@ -44,36 +49,34 @@ y envía su pedido directamente por WhatsApp.
   posiciones de texto configurables).
 - **Configuración general**: nombre del sitio, moneda base, WhatsApp, logo,
   pie de página, tasas de cambio para Bolívares.
-- **Apariencia**: paleta de colores completa (primario, secundario, header, footer,
-  textos, botones) con previsualización instantánea.
+- **Apariencia**: paleta de colores completa para todos los elementos de la tienda,
+  incluyendo títulos de sección, portadas de categorías, botones, cabecera, footer,
+  textos de productos, etc.
 - **Redes sociales** y **Ubicación** (con enlace a Google Maps).
 - **Chatbot**: editor de preguntas y respuestas frecuentes que se reflejan en tiempo
   real en la tienda pública.
 - **Formulario de pedido**: campos personalizables que el cliente debe llenar antes
   de enviar su carrito por WhatsApp.
 - **Estudio de contenido (Katalog Studio)**: genera imágenes profesionales para
-  historias de Instagram (9:16) con plantillas prediseñadas (Amazon Style, Fotografía,
-  Instagram Post, Producto Destacado, Ficha Técnica). Edita textos, colores, logo,
-  resplandor y descarga la imagen a 1080 × 1920 píxeles.
+  historias de Instagram con plantillas prediseñadas.
 - **Sistema de envíos**: estados, zonas, precios únicos o rangos, tiempos de entrega,
-  envío gratis a partir de un monto, categorías de tamaño para costo adicional.
+  envío gratis a partir de un monto.
 - **Módulo de inventario** (subpestañas):
-  - **Stock**: vista con búsqueda, filtros (categoría, oferta, stock bajo),
-    ordenación, barra de progreso visual, desglose por colores y exportación CSV.
-  - **Ventas**: registro manual de ventas, descuento automático de stock,
-    múltiples productos por venta, filtro por período y exportación CSV.
-  - **Compras**: registro de compras a proveedores (fijos u ocasionales),
-    incremento automático de stock, filtro por período y exportación CSV.
-  - **Finanzas**: historial de ingresos y egresos (ventas, compras, gastos
-    operativos), registro automático de gastos fijos mensuales, filtro por período
-    y exportación CSV.
-  - **Gastos fijos**: gastos recurrentes configurables que se registran
-    automáticamente cada mes en finanzas.
+  - **Stock**: vista con búsqueda, filtros, barra de progreso visual y exportación CSV.
+  - **Ventas**: registro manual de ventas, descuento automático de stock.
+  - **Compras**: registro de compras a proveedores.
+  - **Finanzas**: historial de ingresos y egresos, gastos fijos automáticos.
+  - **Gastos fijos**: gastos recurrentes configurables.
   - **Proveedores**: CRUD completo de proveedores.
+- **Cotizaciones**: creación, edición y vista previa de cotizaciones con diseño
+  profesional, estados, monedas y descarga como imagen.
+- **Información del negocio**: bloques de texto, imagen y parallax totalmente
+  personalizables.
+- **Métodos de pago**: configuración de métodos de pago (pago móvil, transferencia,
+  PayPal, personalizado).
+- **Panel responsive** con menú hamburguesa para móviles.
 - **Control de acceso por planes**: cada herramienta puede activarse/desactivarse
   para los planes Gratis, Pro o Business desde el panel de Super Admin.
-- **Notificaciones de plan**: el dueño de la tienda ve las herramientas bloqueadas
-  con un candado y un botón para ver los planes disponibles.
 
 ### 🛡️ Super Administrador
 - **Dashboard global** con KPIs: total de tiendas, productos, ventas, ingresos y
@@ -82,8 +85,8 @@ y envía su pedido directamente por WhatsApp.
   vencimiento personalizada, cancelación.
 - **Visor de tienda**: ve productos, ventas y envíos de cualquier tienda con un clic.
 - **Configuración de planes**: define el límite de productos y las herramientas
-  activas (chatbot, estudio, inventario, envíos, formulario de pedido, etc.) para
-  cada plan.
+  activas (chatbot, estudio, inventario, envíos, formulario de pedido, cotizaciones,
+  métodos de pago, información del negocio, etc.) para cada plan.
 - Interfaz oscura idéntica al panel de administración, con sidebar colapsable.
 
 ### 👤 Autenticación y registro
@@ -91,6 +94,9 @@ y envía su pedido directamente por WhatsApp.
 - Generación automática de slug único para la tienda.
 - Configuración inicial predefinida (slide de bienvenida, colores, etc.).
 - Protección de rutas con verificación de sesión.
+- **Página de registro profesional** con landing informativo, efecto parallax y
+  partículas.
+- **Página de login profesional** con diseño glassmorphism.
 
 ---
 
@@ -104,5 +110,3 @@ y envía su pedido directamente por WhatsApp.
 | **Autenticación** | Firebase Auth (Email/Password) |
 | **Despliegue** | Netlify (con redirecciones SPA) |
 | **Control de versiones** | Git, GitHub |
-
----
