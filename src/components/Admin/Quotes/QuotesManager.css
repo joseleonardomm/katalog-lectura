@@ -260,7 +260,7 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   width: 750px;                    /* ancho fijo para forzar scroll horizontal en móviles */
-  max-width: none;                 /* anula cualquier max-width */
+  max-width: none;
 }
 
 /* Encabezado */
@@ -590,7 +590,7 @@
     max-width: none;
     margin: 0 auto;
     padding: 2.5rem;
-    padding-bottom: 100px;          /* espacio para los botones flotantes */
+    padding-bottom: 100px;
     box-sizing: border-box;
   }
 
@@ -636,33 +636,24 @@
     border: 1px solid #cbd5e0;
   }
 
-  /* ===== TABLA DE PRODUCTOS PERFECTAMENTE ALINEADA ===== */
+  /* ===== ANCHOS DEFINITIVOS DE COLUMNAS ===== */
   .preview-table {
-    width: 100% !important;
     table-layout: fixed;
+    width: 100% !important;
   }
 
-  .preview-table th:nth-child(1) { width: 40%; }                /* Descripción */
-  .preview-table th:nth-child(2) { width: 15%; text-align: center; }  /* Cant. */
-  .preview-table th:nth-child(3) { width: 20%; text-align: center; }  /* P. Unitario */
-  .preview-table th:nth-child(4) { width: 25%; text-align: right; padding-right: 0 !important; } /* Total */
+  /* Descripción: 60%, resto distribuidas equitativamente */
+  .preview-table th:nth-child(1) { width: 60%; }
+  .preview-table th:nth-child(2) { width: 13.33%; text-align: center; }
+  .preview-table th:nth-child(3) { width: 13.33%; text-align: center; }
+  .preview-table th:nth-child(4) { width: 13.34%; text-align: right; padding-right: 0; }
 
   .preview-table td:nth-child(2),
   .preview-table td:nth-child(3) { text-align: center; }
   .preview-table td:nth-child(4) {
     text-align: right;
-    padding-right: 0 !important;
-    border-right: none;                   /* elimina la línea derecha para igualar con totales */
-  }
-
-  /* Alineación de totales generales */
-  .preview-totals {
-    text-align: right;
-  }
-
-  .preview-totals h3,
-  .preview-totals h2 {
-    margin-right: 0;
+    padding-right: 0;
+    border-right: none;
   }
 
   /* Modal de configuración de empresa */

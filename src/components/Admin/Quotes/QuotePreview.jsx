@@ -1,9 +1,8 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import { FaDownload, FaTimes } from 'react-icons/fa';
 import './QuotesManager.css';
 
-// Símbolos para las monedas más comunes
 const CURRENCY_SYMBOLS = {
   USD: '$',
   EUR: '€',
@@ -21,12 +20,6 @@ const CURRENCY_SYMBOLS = {
 
 export default function QuotePreview({ quote, companyInfo, onClose }) {
   const previewRef = useRef(null);
-  
-  // Sliders temporales para ajustar anchos de columna (%)
-  const [col1, setCol1] = useState(40); // Descripción
-  const [col2, setCol2] = useState(15); // Cant.
-  const [col3, setCol3] = useState(20); // P. Unitario
-  const [col4, setCol4] = useState(25); // Total
 
   const handleDownload = async () => {
     if (!previewRef.current) return;
@@ -49,34 +42,6 @@ export default function QuotePreview({ quote, companyInfo, onClose }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content preview-modal" onClick={e => e.stopPropagation()}>
-        
-        {/* Controles temporales de ajuste de columnas (solo desarrollo) */}
-        <div style={{
-          background: '#f9fafb',
-          border: '1px solid #e5e7eb',
-          borderRadius: '8px',
-          padding: '0.8rem',
-          marginBottom: '1rem',
-          fontSize: '0.8rem',
-          color: '#1a202c'
-        }}>
-          <strong>Ajustes de ancho de columna (%)</strong>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.5rem' }}>
-            <label>Descripción: {col1}%
-              <input type="range" min="20" max="60" value={col1} onChange={e => setCol1(Number(e.target.value))} style={{ display: 'block' }} />
-            </label>
-            <label>Cant: {col2}%
-              <input type="range" min="5" max="30" value={col2} onChange={e => setCol2(Number(e.target.value))} style={{ display: 'block' }} />
-            </label>
-            <label>P. Unit: {col3}%
-              <input type="range" min="10" max="35" value={col3} onChange={e => setCol3(Number(e.target.value))} style={{ display: 'block' }} />
-            </label>
-            <label>Total: {col4}%
-              <input type="range" min="10" max="35" value={col4} onChange={e => setCol4(Number(e.target.value))} style={{ display: 'block' }} />
-            </label>
-          </div>
-        </div>
-
         <div className="preview-actions">
           <h3>Vista previa</h3>
           <div>
@@ -116,29 +81,23 @@ export default function QuotePreview({ quote, companyInfo, onClose }) {
             {quote.client?.phone && <p>{quote.client.phone}</p>}
           </div>
 
-          {/* Tabla de items con anchos dinámicos */}
-          <table className="preview-table" style={{ tableLayout: 'fixed', width: '100%' }}>
-            <colgroup>
-              <col style={{ width: `${col1}%` }} />
-              <col style={{ width: `${col2}%` }} />
-              <col style={{ width: `${col3}%` }} />
-              <col style={{ width: `${col4}%` }} />
-            </colgroup>
+          {/* Tabla de items */}
+          <table className="preview-table">
             <thead>
               <tr>
                 <th>Descripción</th>
-                <th style={{ textAlign: 'center' }}>Cant.</th>
-                <th style={{ textAlign: 'center' }}>P. Unitario</th>
-                <th style={{ textAlign: 'right', paddingRight: 0 }}>Total</th>
+                <th>Cant.</th>
+                <th>P. Unitario</th>
+                <th>Total</th>
               </tr>
             </thead>
             <tbody>
               {quote.items?.map((item, i) => (
                 <tr key={i}>
                   <td>{item.description}</td>
-                  <td style={{ textAlign: 'center' }}>{item.quantity}</td>
-                  <td style={{ textAlign: 'center' }}>{formatMoney(item.unitPrice)}</td>
-                  <td style={{ textAlign: 'right', paddingRight: 0, borderRight: 'none' }}>{formatMoney((item.quantity || 0) * (item.unitPrice || 0))}</td>
+                  <td>{item.quantity}</td>
+                  <td>{formatMoney(item.unitPrice)}</td>
+                  <td>{formatMoney((item.quantity || 0) * (item.unitPrice || 0))}</td>
                 </tr>
               ))}
             </tbody>
