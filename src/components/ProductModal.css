@@ -341,47 +341,71 @@
   color: #555;
 }
 
-/* Responsive móvil */
+/* ==========================================
+   📱  MÓVIL (arreglado: scroll + botones visibles)
+   ========================================== */
 @media (max-width: 768px) {
   .modal-overlay {
     padding: 0;
-    align-items: flex-start;
+    align-items: flex-end;          /* pega el modal al fondo */
   }
+
   .modal-container {
     max-width: 100%;
     width: 100%;
-    max-height: 100vh;
-    border-radius: 0;
+    max-height: 90vh;               /* alto máximo */
+    border-radius: 24px 24px 0 0;   /* esquinas superiores redondeadas */
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;               /* scroll vertical */
   }
+
   .modal-gallery {
     border-radius: 0;
     padding: 1rem;
+    flex-shrink: 0;                 /* la galería no se comprime */
   }
+
+  .modal-details {
+    padding: 1rem;
+    flex: 1;                        /* ocupa el espacio restante */
+    overflow-y: auto;               /* scroll propio si el contenido es muy largo */
+  }
+
   .product-image-square {
     max-width: 300px;
   }
+
   .thumbnail-item {
     width: 50px;
     height: 50px;
   }
-  .modal-details {
-    padding: 1rem;
-  }
+
   .modal-details h2 {
     font-size: 1.4rem;
   }
+
   .modal-price,
   .sale-price {
     font-size: 1.6rem;
   }
+
   .color-swatch {
     width: 30px;
     height: 30px;
   }
+
   .modal-buttons {
     flex-direction: column;
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 1rem;
+    margin: 0;                      /* elimina el margen extra */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05); /* sombra sutil hacia arriba */
   }
+
   .modal-close {
     top: 0.5rem;
     right: 0.5rem;
@@ -389,6 +413,7 @@
     height: 36px;
     font-size: 1.4rem;
   }
+
   .btn-whatsapp,
   .btn-add-cart,
   .btn-share {
@@ -397,6 +422,7 @@
   }
 }
 
+/* Ajuste extra para pantallas muy pequeñas */
 @media (max-width: 480px) {
   .product-image-square {
     max-width: 240px;
@@ -412,7 +438,7 @@
 }
 
 /* ============================================
-   🖥️  ESTILOS EXCLUSIVOS PARA PC (Escritorio)
+   🖥️  ESCRITORIO (sin cambios)
    ============================================ */
 @media (min-width: 1024px) {
   .modal-overlay {
