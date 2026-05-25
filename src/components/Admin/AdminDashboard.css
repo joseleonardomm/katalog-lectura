@@ -566,6 +566,20 @@ table td {
     display: inline !important;
   }
 
+  /* ✅ Cabecera del menú fija (logo siempre visible) */
+  .admin-sidebar .sidebar-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--sidebar-bg);
+  }
+
+  /* ✅ Logo no se desborda ni corta */
+  .sidebar-logo img {
+    max-width: 180px;
+    height: auto;
+  }
+
   /* Contenido principal */
   .admin-main-content {
     margin-left: 0 !important;
@@ -633,7 +647,7 @@ table td {
   .quotes-table,
   .users-table,
   .admin-content table {
-    min-width: 600px; /* fuerza scroll si es necesario */
+    min-width: 600px;
   }
 
   /* ===== MODALES (evitar desbordamiento) ===== */
@@ -746,64 +760,5 @@ table td {
   /* ===== PLAN Y ENLACE ===== */
   .sidebar-store-link {
     display: flex !important;
-  }
-
-  /* ===== INVENTARIO – VENTAS, COMPRAS, FINANZAS, GASTOS FIJOS, PROVEEDORES ===== */
-  .inv-header {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .inv-table {
-    min-width: 500px;               /* fuerza scroll horizontal en tablas anchas */
-  }
-
-  .table-container,
-  .inv-table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .stock-filters {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
-  .filter-search-box {
-    width: 100%;
-  }
-
-  .filter-select,
-  .filter-input {
-    width: 100%;
-    min-width: auto;
-  }
-
-  .filter-checkbox {
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.8rem;
-  }
-
-  .item-row {
-    flex-wrap: wrap;
-  }
-
-  .item-row select,
-  .item-row input {
-    width: 100%;
-    min-width: auto;
-  }
-
-  .btn-add,
-  .btn-remove {
-    align-self: flex-start;
-  }
-
-  .fixed-expenses-grid,
-  .stock-grid {
-    grid-template-columns: 1fr !important;
   }
 }

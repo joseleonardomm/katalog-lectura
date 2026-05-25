@@ -181,12 +181,17 @@ export default function AdminDashboard() {
               <h2>{config.siteName || 'Katalog'}</h2>
             </div>
           )}
+          {/* Flecha de colapso solo en escritorio */}
           <button
             className="sidebar-toggle desktop-only"
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
           >
             {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
+          </button>
+          {/* Botón de cierre para móvil */}
+          <button className="sidebar-toggle mobile-close-btn" onClick={closeMobileMenu}>
+            <FaChevronLeft />
           </button>
         </div>
 
@@ -251,6 +256,7 @@ export default function AdminDashboard() {
           <button className="sidebar-toggle mobile-hamburger" onClick={() => setMobileMenuOpen(true)}>
             <FaBars />
           </button>
+          {/* No se muestra ningún logo adicional en la barra superior */}
         </header>
 
         <div className="admin-content">
