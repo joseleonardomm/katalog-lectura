@@ -259,7 +259,8 @@
   border: 1px solid #edf2f7;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  min-width: 750px;            /* asegura ancho mínimo para forzar scroll si es necesario */
+  width: 750px;                    /* ancho fijo para forzar scroll horizontal en móviles */
+  max-width: none;                 /* anula cualquier max-width */
 }
 
 /* Encabezado */
@@ -393,7 +394,7 @@
 .preview-totals h3 {
   margin: 0.5rem 0;
   font-size: 1.1rem;
-  color: #000000;               /* subtotal en negro */
+  color: #000000;
 }
 
 .preview-totals h2 {
@@ -566,7 +567,7 @@
     max-width: 100%;
   }
 
-  /* ===== VISTA PREVIA EN MÓVIL: OCUPA TODA LA PANTALLA Y PERMITE SCROLL ===== */
+  /* ===== VISTA PREVIA: OCUPA TODA LA PANTALLA, DOCUMENTO A TAMAÑO REAL ===== */
   .preview-modal {
     position: fixed;
     top: 0;
@@ -577,16 +578,19 @@
     max-height: 100vh;
     margin: 0;
     border-radius: 0;
-    padding: 1rem;
-    overflow: auto;                 /* ambos scrolls si el documento es más grande */
-    z-index: 1000;
+    padding: 0;                 /* sin padding para que el scroll funcione sin recortes */
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
     background: #ffffff !important;
     display: block;
   }
 
-  /* No reducimos nada del documento, se conserva el tamaño de escritorio */
   .quote-preview-document {
-    /* hereda todas las propiedades de escritorio */
+    width: 750px;               /* ancho fijo como en escritorio */
+    max-width: none;
+    margin: 0;                  /* sin centrado, el documento empieza en la esquina */
+    padding: 2.5rem;            /* mismo padding de escritorio */
+    box-sizing: border-box;
   }
 
   .preview-actions {
@@ -594,6 +598,7 @@
     align-items: stretch;
     gap: 0.5rem;
     margin-bottom: 1rem;
+    padding: 0 1rem;            /* un poco de respiro lateral */
   }
 
   .preview-actions > div {
