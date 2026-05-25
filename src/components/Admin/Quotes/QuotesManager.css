@@ -636,21 +636,35 @@
     border: 1px solid #cbd5e0;
   }
 
-  /* ===== TABLA DE PRODUCTOS BIEN DISTRIBUIDA ===== */
+  /* ===== TABLA DE PRODUCTOS PERFECTAMENTE ALINEADA ===== */
   .preview-table {
     width: 100% !important;
     table-layout: fixed;
   }
 
-  .preview-table th:nth-child(1) { width: 40%; }   /* Descripción */
-  .preview-table th:nth-child(2) { width: 15%; text-align: center; }  /* Cant. */
-  .preview-table th:nth-child(3) { width: 25%; text-align: center; }  /* P. Unitario */
-  .preview-table th:nth-child(4) { width: 20%; text-align: center; }  /* Total */
+  .preview-table th:nth-child(1) { width: 40%; }            /* Descripción */
+  .preview-table th:nth-child(2) { width: 15%; text-align: center; }   /* Cant. */
+  .preview-table th:nth-child(3) { width: 25%; text-align: center; }   /* P. Unitario */
+  .preview-table th:nth-child(4) { width: 20%; text-align: right; }    /* Total */
 
+  /* Alineación de celdas */
   .preview-table td:nth-child(2),
-  .preview-table td:nth-child(3),
-  .preview-table td:nth-child(4) {
+  .preview-table td:nth-child(3) {
     text-align: center;
+  }
+  .preview-table td:nth-child(4) {
+    text-align: right;
+    padding-right: 1.5rem;      /* un poco de respiro a la derecha */
+  }
+
+  /* Para que los totales generales sigan la misma alineación */
+  .preview-totals {
+    text-align: right;
+  }
+
+  .preview-totals h3,
+  .preview-totals h2 {
+    margin-right: 0;
   }
 
   /* Modal de configuración de empresa */
