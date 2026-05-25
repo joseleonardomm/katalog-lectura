@@ -11,7 +11,7 @@ export default function LocationSettings({ location, onUpdate }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await updateLocation(form);
-    onUpdate();
+    if (onUpdate) onUpdate();            // ✅ solo se llama si existe
     alert('Ubicación actualizada');
   };
 

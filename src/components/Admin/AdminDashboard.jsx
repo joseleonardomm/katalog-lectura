@@ -159,9 +159,9 @@ export default function AdminDashboard() {
     { id: 'faq', label: 'Chatbot', icon: <FaRobot />, locked: !isFeatureEnabled('chatbot') },
     { id: 'studio', label: 'Estudio de contenido', icon: <FaCamera />, locked: !isFeatureEnabled('studio') },
     { id: 'orderform', label: 'Formulario de pedido', icon: <FaClipboardList /> },
-    { id: 'info', label: 'Información', icon: <FaInfoCircle /> },
-    { id: 'quotes', label: 'Cotizaciones', icon: <FaFileInvoiceDollar /> },
-    { id: 'payments', label: 'Pagos', icon: <FaMoneyBillWave /> },
+    { id: 'info', label: 'Información', icon: <FaInfoCircle />, locked: !isFeatureEnabled('info') },
+    { id: 'quotes', label: 'Cotizaciones', icon: <FaFileInvoiceDollar />, locked: !isFeatureEnabled('quotes') },
+    { id: 'payments', label: 'Pagos', icon: <FaMoneyBillWave />, locked: !isFeatureEnabled('payments') },
   ];
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
@@ -170,7 +170,7 @@ export default function AdminDashboard() {
     <div className="admin-dashboard-v2">
       {mobileMenuOpen && <div className="sidebar-overlay" onClick={closeMobileMenu}></div>}
 
-      <aside className={`admin-sidebar ${sidebarCollapsed && !mobileMenuOpen ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-sidebar-open' : ''}`}>
+      <aside className={`admin-sidebar ${sidebarCollapsed ? 'collapsed' : ''} ${mobileMenuOpen ? 'mobile-sidebar-open' : ''}`}>
         <div className="sidebar-header">
           {config.logoUrl ? (
             <div className="sidebar-logo">
@@ -181,17 +181,12 @@ export default function AdminDashboard() {
               <h2>{config.siteName || 'Katalog'}</h2>
             </div>
           )}
-          {/* Flecha de colapso SOLO en escritorio */}
           <button
             className="sidebar-toggle desktop-only"
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             title={sidebarCollapsed ? 'Expandir menú' : 'Colapsar menú'}
           >
             {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
-          </button>
-          {/* Flecha de cierre SOLO en móvil */}
-          <button className="sidebar-toggle mobile-close-btn" onClick={closeMobileMenu}>
-            <FaChevronLeft />
           </button>
         </div>
 
@@ -215,36 +210,39 @@ export default function AdminDashboard() {
         </nav>
 
         <div className="sidebar-footer">
-          {/* En móvil mostramos siempre el footer; en escritorio solo si no está colapsado */}
-          <div className="sidebar-plan-info">
-            <div className="plan-badge" onClick={() => { setShowPlanModal(true); closeMobileMenu(); }}>
-              <FaCrown className="plan-crown" />
-              <div>
-                <span className="plan-name">{planName}</span>
-                {currentPlan !== 'free' && planStatus === 'active' && (
-                  <span className="plan-date"> Vence: {formatDate(planEndDate)}</span>
-                )}
+          {(!sidebarCollapsed || mobileMenuOpen) && (
+            <>
+              <div className="sidebar-plan-info">
+                <div className="plan-badge" onClick={() => { setShowPlanModal(true); closeMobileMenu(); }}>
+                  <FaCrown className="plan-crown" />
+                  <div>
+                    <span className="plan-name">{planName}</span>
+                    {currentPlan !== 'free' && planStatus === 'active' && (
+                      <span className="plan-date"> Vence: {formatDate(planEndDate)}</span>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {storeSlug && (
-            <div className="sidebar-store-link">
-              <FaLink />
-              <span className="store-url">{storeLink}</span>
-              <button onClick={copyStoreLink} title="Copiar enlace"><FaCopy /></button>
-            </div>
+              {storeSlug && (
+                <div className="sidebar-store-link">
+                  <FaLink />
+                  <span className="store-url">{storeLink}</span>
+                  <button onClick={copyStoreLink} title="Copiar enlace"><FaCopy /></button>
+                </div>
+              )}
+
+              {isSuper && (
+                <button className="sidebar-super-btn" onClick={() => { navigate('/superadmin/dashboard'); closeMobileMenu(); }}>
+                  Super Admin
+                </button>
+              )}
+
+              <button className="sidebar-logout" onClick={handleLogout}>
+                <FaSignOutAlt /> Cerrar sesión
+              </button>
+            </>
           )}
-
-          {isSuper && (
-            <button className="sidebar-super-btn" onClick={() => { navigate('/superadmin/dashboard'); closeMobileMenu(); }}>
-              Super Admin
-            </button>
-          )}
-
-          <button className="sidebar-logout" onClick={handleLogout}>
-            <FaSignOutAlt /> Cerrar sesión
-          </button>
         </div>
       </aside>
 
@@ -280,9 +278,27 @@ export default function AdminDashboard() {
             )
           )}
           {activeTab === 'orderform' && <OrderFormManager showMessage={showMessage} />}
-          {activeTab === 'info' && <BusinessInfoManager showMessage={showMessage} />}
-          {activeTab === 'quotes' && <QuotesManager showMessage={showMessage} />}
-          {activeTab === 'payments' && <PaymentMethodsManager showMessage={showMessage} />}
+          {activeTab === 'info' && (
+            isFeatureEnabled('info') ? (
+              <BusinessInfoManager showMessage={showMessage} />
+            ) : (
+              <LockedFeature feature="Información del negocio" icon={<FaInfoCircle />} onUpgrade={() => setShowPlanModal(true)} />
+            )
+          )}
+          {activeTab === 'quotes' && (
+            isFeatureEnabled('quotes') ? (
+              <QuotesManager showMessage={showMessage} />
+            ) : (
+              <LockedFeature feature="Cotizaciones" icon={<FaFileInvoiceDollar />} onUpgrade={() => setShowPlanModal(true)} />
+            )
+          )}
+          {activeTab === 'payments' && (
+            isFeatureEnabled('payments') ? (
+              <PaymentMethodsManager showMessage={showMessage} />
+            ) : (
+              <LockedFeature feature="Métodos de pago" icon={<FaMoneyBillWave />} onUpgrade={() => setShowPlanModal(true)} />
+            )
+          )}
         </div>
       </main>
 

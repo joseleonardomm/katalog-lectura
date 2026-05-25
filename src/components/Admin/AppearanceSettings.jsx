@@ -40,6 +40,19 @@ function ColorPicker({ label, value, onChange, name }) {
   );
 }
 
+// Función para quitar propiedades undefined de un objeto
+function removeUndefined(obj) {
+  if (obj === null || typeof obj !== 'object') return obj;
+  if (Array.isArray(obj)) return obj.map(item => removeUndefined(item));
+  const cleaned = {};
+  for (const [key, value] of Object.entries(obj)) {
+    if (value !== undefined) {
+      cleaned[key] = removeUndefined(value);
+    }
+  }
+  return cleaned;
+}
+
 export default function AppearanceSettings({ config, onUpdate }) {
   const [form, setForm] = useState(config || {});
   const [saving, setSaving] = useState(false);
@@ -68,7 +81,11 @@ export default function AppearanceSettings({ config, onUpdate }) {
         buttonSecondaryBg: form.buttonSecondaryBg,
         buttonSecondaryText: form.buttonSecondaryText,
       };
-      await updateConfig(updates);
+
+      // Eliminar cualquier campo con valor undefined
+      const cleanedUpdates = removeUndefined(updates);
+
+      await updateConfig(cleanedUpdates);
       if (onUpdate) await onUpdate();
       alert('Estilos actualizados correctamente');
     } catch (error) {

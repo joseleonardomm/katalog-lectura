@@ -51,6 +51,7 @@ export default function PlanManager() {
   if (loading) return <div style={{ color: 'var(--text-secondary)' }}>Cargando configuración de planes...</div>;
   if (!plans) return <div style={{ color: 'var(--danger)' }}>Error al cargar planes.</div>;
 
+  // ✅ Lista actualizada con las nuevas herramientas
   const featuresList = [
     { key: 'chatbot', label: 'Chatbot', icon: '💬' },
     { key: 'studio', label: 'Estudio de contenido', icon: '📸' },
@@ -58,6 +59,9 @@ export default function PlanManager() {
     { key: 'orderForm', label: 'Formulario de pedido', icon: '📝' },
     { key: 'shipping', label: 'Envíos', icon: '🚚' },
     { key: 'inventory', label: 'Inventario', icon: '📦' },
+    { key: 'quotes', label: 'Cotizaciones', icon: '📄' },
+    { key: 'payments', label: 'Métodos de pago', icon: '💳' },
+    { key: 'info', label: 'Información del negocio', icon: 'ℹ️' },
   ];
 
   return (

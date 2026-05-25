@@ -145,3 +145,46 @@
   .studio-preview-area { padding: 0.5rem; }
   .preview-canvas-wrapper { max-width: 240px; }
 }
+
+/* ===== MENSAJE PARA MÓVIL ===== */
+.content-creator-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.mobile-message-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  max-width: 450px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.mobile-icon {
+  font-size: 3rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.desktop-icon {
+  font-size: 2rem;
+  color: var(--text-muted);
+  margin-top: 1.5rem;
+}
+
+.mobile-message-card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.mobile-message-card p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}

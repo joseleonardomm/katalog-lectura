@@ -11,7 +11,7 @@ export default function SocialLinks({ social, onUpdate }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await updateSocialLinks(form);
-    onUpdate();
+    if (onUpdate) onUpdate();            // ✅ solo se llama si existe
     alert('Redes sociales actualizadas');
   };
 

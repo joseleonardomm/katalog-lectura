@@ -4,10 +4,21 @@ import { formats, templates } from './templates/index';
 import html2canvas from 'html2canvas';
 import {
   FaSearch, FaPalette, FaFont, FaImage, FaSlidersH, FaDownload, FaExpand, FaTimes, FaStar,
+  FaMobileAlt, FaDesktop
 } from 'react-icons/fa';
 import './ContentCreator.css';
 
 export default function ContentCreator() {
+  // ========== DETECCIÓN DE DISPOSITIVO MÓVIL ==========
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // ========== ESTADO DEL ESTUDIO ==========
   const [products, setProducts] = useState([]);
   const [config, setConfig] = useState(null);
   const [selectedProductId, setSelectedProductId] = useState('');
@@ -117,7 +128,6 @@ export default function ContentCreator() {
   const downloadImage = async () => {
     if (!previewRef.current) return;
 
-    // Dimensiones destino
     let targetWidth, targetHeight;
     if (selectedTemplate?.id === 'photography') {
       targetWidth = naturalWidth;
@@ -128,7 +138,6 @@ export default function ContentCreator() {
       targetHeight = f.height;
     }
 
-    // Crear un contenedor oculto del tamaño final
     const cloneContainer = document.createElement('div');
     cloneContainer.style.position = 'absolute';
     cloneContainer.style.left = '-9999px';
@@ -139,7 +148,6 @@ export default function ContentCreator() {
     cloneContainer.style.fontFamily = 'Inter, system-ui, sans-serif';
     cloneContainer.style.background = overlayColor || '#000000';
 
-    // Clonar el contenido del preview actual
     const clone = previewRef.current.cloneNode(true);
     clone.style.width = '100%';
     clone.style.height = '100%';
@@ -147,7 +155,6 @@ export default function ContentCreator() {
     clone.style.maxHeight = 'none';
     clone.style.aspectRatio = 'auto';
 
-    // Asegurar que todas las imágenes estén cargadas
     const images = clone.querySelectorAll('img');
     await Promise.all(
       Array.from(images).map(img =>
@@ -162,7 +169,6 @@ export default function ContentCreator() {
     document.body.appendChild(cloneContainer);
 
     try {
-      // Ajustar la escala de fuentes para que coincida con el tamaño final
       const currentWidth = previewRef.current.offsetWidth || 280;
       const scaleFactor = targetWidth / currentWidth;
       const baseFontSize = 16;
@@ -170,13 +176,12 @@ export default function ContentCreator() {
       document.documentElement.style.fontSize = `${baseFontSize * scaleFactor}px`;
 
       const canvas = await html2canvas(cloneContainer, {
-        scale: 2,               // nitidez extra
+        scale: 2,
         useCORS: true,
         allowTaint: false,
         backgroundColor: null,
       });
 
-      // Restaurar tamaño de fuente raíz
       document.documentElement.style.fontSize = originalRootFontSize;
 
       canvas.toBlob(blob => {
@@ -191,10 +196,46 @@ export default function ContentCreator() {
       console.error('Error al generar imagen', err);
       alert('Error al generar la imagen.');
     } finally {
-      // Limpiar el clon
       document.body.removeChild(cloneContainer);
     }
   };
+
+  // ==================== MENSAJE PARA MÓVIL ====================
+  if (isMobile) {
+    return (
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '60vh',
+        padding: '2rem',
+        textAlign: 'center',
+        color: 'var(--text-primary, #f0f0f5)',
+      }}>
+        <div style={{
+          background: 'var(--bg-card, #1e1e2e)',
+          border: '1px solid var(--border-color, #2a2a3c)',
+          borderRadius: '24px',
+          padding: '3rem 2rem',
+          maxWidth: '450px',
+          boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+        }}>
+          <FaMobileAlt style={{ fontSize: '3rem', color: 'var(--accent, #ff6b00)', marginBottom: '1rem' }} />
+          <h2 style={{ marginBottom: '1rem', fontSize: '1.5rem', color: 'var(--text-primary, #f0f0f5)' }}>Estudio de contenido</h2>
+          <p style={{ color: 'var(--text-secondary, #a0a0b8)', lineHeight: 1.6, marginBottom: '0.8rem' }}>
+            Esta herramienta solo está disponible en <strong>versión de escritorio</strong>.
+          </p>
+          <p style={{ color: 'var(--text-secondary, #a0a0b8)', lineHeight: 1.6, marginBottom: '0.8rem' }}>
+            Para crear imágenes profesionales para tus redes sociales, accede desde una computadora o activa la vista de escritorio en tu navegador.
+          </p>
+          <FaDesktop style={{ fontSize: '2rem', color: 'var(--text-muted, #707088)', marginTop: '1.5rem' }} />
+        </div>
+      </div>
+    );
+  }
+
+  // ==================== RENDERIZADO NORMAL (ESCRITORIO) ====================
+  if (loading) return <div className="studio-loading">Cargando estudio...</div>;
 
   const format = formats[selectedFormat];
   const previewStyles = (() => {
@@ -512,8 +553,6 @@ export default function ContentCreator() {
     ...(logoPosition === 'bottom-left' && { bottom: '2%', left: '3%' }),
     ...(logoPosition === 'bottom-right' && { bottom: '2%', right: '3%' }),
   };
-
-  if (loading) return <div className="studio-loading">Cargando estudio...</div>;
 
   return (
     <div className={`content-creator-v2 ${fullscreen ? 'fullscreen-active' : ''}`}>
