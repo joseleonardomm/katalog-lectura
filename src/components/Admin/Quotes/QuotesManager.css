@@ -394,7 +394,7 @@
 .preview-totals h3 {
   margin: 0.5rem 0;
   font-size: 1.1rem;
-  color: #000000;
+  color: #000000;               /* subtotal en negro */
 }
 
 .preview-totals h2 {
@@ -588,27 +588,54 @@
   .quote-preview-document {
     width: 750px;               /* ancho fijo como en escritorio */
     max-width: none;
-    margin: 0;                  /* sin centrado, el documento empieza en la esquina */
-    padding: 2.5rem;            /* mismo padding de escritorio */
+    margin: 0 auto;             /* centrado para que se vea bien */
+    padding: 2.5rem;
+    padding-bottom: 100px;      /* espacio para los botones flotantes */
     box-sizing: border-box;
   }
 
+  /* Barra de botones flotantes (reemplaza al preview-actions original) */
   .preview-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-    padding: 0 1rem;            /* un poco de respiro lateral */
-  }
-
-  .preview-actions > div {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    padding: 0.8rem 1rem;
+    margin: 0;
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
+    justify-content: center;
+    z-index: 1001;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
   }
 
-  .preview-actions button {
-    width: 100%;
+  /* Ocultar el título "Vista previa" para dar espacio limpio */
+  .preview-actions h3 {
+    display: none;
+  }
+
+  /* Botones dentro de la barra flotante */
+  .preview-actions .btn-primary,
+  .preview-actions .btn-secondary {
+    flex: 1;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  .preview-actions .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+  }
+
+  .preview-actions .btn-secondary {
+    background: #edf2f7;
+    color: #1a202c;
+    border: 1px solid #cbd5e0;
   }
 
   /* Modal de configuración de empresa */
