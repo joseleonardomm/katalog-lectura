@@ -610,3 +610,17 @@
     border-radius: 16px;
   }
 }
+
+/* ========== SCROLL HORIZONTAL EN ESTADOS (MÓVIL) ========== */
+@media (max-width: 768px) {
+  .status-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .btn-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
