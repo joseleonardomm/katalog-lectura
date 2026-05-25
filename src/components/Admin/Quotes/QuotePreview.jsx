@@ -23,11 +23,19 @@ export default function QuotePreview({ quote, companyInfo, onClose }) {
 
   const handleDownload = async () => {
     if (!previewRef.current) return;
-    const canvas = await html2canvas(previewRef.current, { backgroundColor: '#ffffff', scale: 2 });
-    const link = document.createElement('a');
-    link.download = `cotizacion-${quote.quoteNumber || 'nueva'}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    // Esperamos un instante para asegurarnos de que las imágenes estén renderizadas
+    setTimeout(async () => {
+      const canvas = await html2canvas(previewRef.current, {
+        backgroundColor: '#ffffff',
+        scale: 2,
+        allowTaint: false,        // seguridad adicional
+        useCORS: true,            // habilita el manejo de imágenes cross-origin
+      });
+      const link = document.createElement('a');
+      link.download = `cotizacion-${quote.quoteNumber || 'nueva'}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }, 500);
   };
 
   const accentColor = companyInfo?.accentColor || '#ff8c42';
@@ -53,7 +61,14 @@ export default function QuotePreview({ quote, companyInfo, onClose }) {
         <div ref={previewRef} className="quote-preview-document">
           {/* Encabezado */}
           <div className="preview-header" style={{ borderBottomColor: accentColor }}>
-            {companyInfo?.logo && <img src={companyInfo.logo} alt="Logo" className="preview-logo" />}
+            {companyInfo?.logo && (
+              <img
+                src={companyInfo.logo}
+                alt="Logo"
+                className="preview-logo"
+                crossOrigin="anonymous"      // ← clave para la descarga
+              />
+            )}
             <div className="preview-company-info">
               <h2 style={{ color: accentColor }}>{companyInfo?.name || 'Empresa'}</h2>
               {companyInfo?.rif && <p><strong>RIF:</strong> {companyInfo.rif}</p>}
@@ -107,7 +122,7 @@ export default function QuotePreview({ quote, companyInfo, onClose }) {
           <div className="preview-totals">
             {quote.discount > 0 && <p>Descuento: {quote.discount}%</p>}
             {quote.tax > 0 && <p>Impuesto: {quote.tax}%</p>}
-            <h3>Subtotal: {formatMoney(quote.total)}</h3>
+            <h3 style={{ color: '#000000' }}>Subtotal: {formatMoney(quote.total)}</h3>
             {quote.shippingType === 'free' && <p style={{ color: '#38a169' }}>🚚 Envío gratis incluido</p>}
             {quote.shippingType === 'paid' && (
               <p>Envío: {formatMoney(quote.shippingCost)}</p>

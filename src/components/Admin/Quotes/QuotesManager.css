@@ -664,3 +664,39 @@
     border-radius: 16px;
   }
 }
+
+/* Dentro de @media (max-width: 768px), al final, agrega: */
+
+/* Indicador de scroll horizontal */
+.quotes-table-container {
+  position: relative;
+}
+
+.quotes-table-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 30px;
+  background: linear-gradient(to right, transparent, rgba(0,0,0,0.15));
+  pointer-events: none;           /* permite tocar la tabla a través del degradado */
+  animation: fadeOutGradient 3s ease forwards;
+}
+
+/* Pequeño desplazamiento de la tabla para indicar movimiento */
+.quotes-table-container {
+  animation: hintScroll 2s ease-in-out 0.5s;
+}
+
+@keyframes fadeOutGradient {
+  0%   { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes hintScroll {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(-12px); }
+  100% { transform: translateX(0); }
+}
