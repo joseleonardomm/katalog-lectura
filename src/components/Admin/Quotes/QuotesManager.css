@@ -229,7 +229,7 @@
   border-radius: 16px;
   padding: 1.5rem;
   max-height: 90vh;
-  overflow-y: auto;                /* scroll si el contenido es más alto */
+  overflow-y: auto;
 }
 
 .preview-actions {
@@ -493,7 +493,6 @@
     min-width: auto;
   }
 
-  /* Scroll horizontal para los estados */
   .status-filters {
     overflow-x: auto;
     flex-wrap: nowrap;
@@ -507,7 +506,6 @@
     flex-shrink: 0;
   }
 
-  /* Tabla con scroll horizontal */
   .quotes-table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -522,7 +520,6 @@
     flex-wrap: nowrap;
   }
 
-  /* Modal del formulario (se adapta para no desbordar) */
   .quote-modal {
     width: 100% !important;
     max-width: 100% !important;
@@ -566,6 +563,127 @@
 
   .totals-section .form-group {
     max-width: 100%;
+  }
+
+  /* ===== VISTA PREVIA EN MÓVIL (diseño de escritorio escalado) ===== */
+  .preview-modal {
+    width: 95% !important;
+    max-width: 100% !important;
+    margin: 1rem auto !important;
+    position: relative !important;
+    top: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    right: auto !important;
+    border-radius: 12px !important;
+    padding: 1rem !important;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #ffffff !important;
+  }
+
+  .preview-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .preview-actions > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .preview-actions button {
+    width: 100%;
+  }
+
+  .quote-preview-document {
+    padding: 1.2rem !important;
+    font-size: 0.9rem;
+  }
+
+  .preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .preview-logo {
+    max-height: 50px;
+  }
+
+  .preview-company-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .preview-company-info p {
+    font-size: 0.8rem;
+  }
+
+  .preview-title h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+  }
+
+  .preview-title p {
+    font-size: 0.8rem;
+  }
+
+  .preview-client {
+    margin: 1rem 0;
+    padding: 0.8rem 1rem;
+  }
+
+  .preview-client h3 {
+    font-size: 0.95rem;
+  }
+
+  .preview-client p {
+    font-size: 0.85rem;
+  }
+
+  .preview-exchange {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  .preview-table {
+    font-size: 0.75rem;
+  }
+
+  .preview-table th,
+  .preview-table td {
+    padding: 0.5rem;
+  }
+
+  .preview-totals {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+  }
+
+  .preview-totals p {
+    font-size: 0.8rem;
+  }
+
+  .preview-totals h3 {
+    font-size: 1rem;
+  }
+
+  .preview-totals h2 {
+    font-size: 1.4rem;
+  }
+
+  .preview-notes {
+    margin-top: 1.5rem;
+    padding-top: 0.8rem;
+  }
+
+  .preview-notes p {
+    font-size: 0.85rem;
   }
 
   /* Modal de configuración de empresa */
