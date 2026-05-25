@@ -228,6 +228,8 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
   border-radius: 16px;
   padding: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;                /* scroll si el contenido es más alto */
 }
 
 .preview-actions {
@@ -248,6 +250,7 @@
   margin-right: 0.5rem;
 }
 
+/* Documento de cotización */
 .quote-preview-document {
   background: #ffffff;
   padding: 2.5rem;
@@ -258,6 +261,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+/* Encabezado */
 .preview-header {
   display: flex;
   gap: 1.5rem;
@@ -286,6 +290,7 @@
   color: #4a5568;
 }
 
+/* Título de cotización */
 .preview-title {
   text-align: center;
   margin: 2rem 0;
@@ -306,6 +311,7 @@
   color: #718096;
 }
 
+/* Cliente */
 .preview-client {
   margin: 1.5rem 0;
   padding: 1rem 1.2rem;
@@ -327,6 +333,7 @@
   color: #2d3748;
 }
 
+/* Tasa de cambio */
 .preview-exchange {
   background: #fffaf0;
   border: 1px solid #fbd38d;
@@ -341,6 +348,7 @@
   margin: 0;
 }
 
+/* Tabla de items */
 .preview-table {
   width: 100%;
   border-collapse: collapse;
@@ -367,6 +375,7 @@
   border-bottom: none;
 }
 
+/* Totales */
 .preview-totals {
   text-align: right;
   margin-top: 1.5rem;
@@ -383,7 +392,7 @@
 .preview-totals h3 {
   margin: 0.5rem 0;
   font-size: 1.1rem;
-  color: #2d3748;
+  color: #000000;               /* subtotal en negro */
 }
 
 .preview-totals h2 {
@@ -393,6 +402,7 @@
   color: #ff8c42;
 }
 
+/* Notas */
 .preview-notes {
   margin-top: 2rem;
   border-top: 1px solid #e2e8f0;
@@ -413,6 +423,7 @@
   white-space: pre-wrap;
 }
 
+/* Loading */
 .quotes-loading {
   text-align: center;
   padding: 3rem;
@@ -511,7 +522,7 @@
     flex-wrap: nowrap;
   }
 
-  /* Modal del formulario */
+  /* Modal del formulario (se adapta para no desbordar) */
   .quote-modal {
     width: 100% !important;
     max-width: 100% !important;
@@ -555,56 +566,6 @@
 
   .totals-section .form-group {
     max-width: 100%;
-  }
-
-  /* Modal de vista previa */
-  .preview-modal {
-    width: 100% !important;
-    max-width: 100% !important;
-    border-radius: 16px 16px 0 0;
-    padding: 0.8rem;
-    margin: 0;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-height: 85vh;
-    overflow-y: auto;
-  }
-
-  .quote-preview-document {
-    padding: 0.8rem;
-  }
-
-  .preview-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-
-  .preview-title h1 {
-    font-size: 1.8rem;
-  }
-
-  .preview-table {
-    font-size: 0.7rem;
-  }
-
-  .preview-table th,
-  .preview-table td {
-    padding: 0.4rem;
-  }
-
-  .preview-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-
-  .preview-actions > div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
   }
 
   /* Modal de configuración de empresa */
