@@ -443,6 +443,7 @@
 @media (max-width: 768px) {
   .quotes-manager {
     padding: 0.5rem;
+    overflow-x: hidden;
   }
 
   .quotes-header {
@@ -481,11 +482,13 @@
     min-width: auto;
   }
 
+  /* Scroll horizontal para los estados */
   .status-filters {
     overflow-x: auto;
     flex-wrap: nowrap;
     padding-bottom: 0.5rem;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
 
   .btn-chip {
@@ -497,7 +500,9 @@
   .quotes-table-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
+
   .quotes-table {
     min-width: 550px;
   }
@@ -608,19 +613,5 @@
     max-height: 85vh;
     padding: 1rem;
     border-radius: 16px;
-  }
-}
-
-/* ========== SCROLL HORIZONTAL EN ESTADOS (MÓVIL) ========== */
-@media (max-width: 768px) {
-  .status-filters {
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding-bottom: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-  }
-  .btn-chip {
-    flex-shrink: 0;
-    white-space: nowrap;
   }
 }
