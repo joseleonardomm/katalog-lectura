@@ -594,7 +594,7 @@
     box-sizing: border-box;
   }
 
-  /* Barra de botones flotantes (reemplaza al preview-actions original) */
+  /* Barra de botones flotantes */
   .preview-actions {
     position: fixed;
     bottom: 0;
@@ -611,12 +611,10 @@
     box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
   }
 
-  /* Ocultar el título "Vista previa" */
   .preview-actions h3 {
     display: none;
   }
 
-  /* Botones dentro de la barra flotante */
   .preview-actions .btn-primary,
   .preview-actions .btn-secondary {
     flex: 1;
@@ -638,17 +636,22 @@
     border: 1px solid #cbd5e0;
   }
 
-  /* ===== TABLA DE PRODUCTOS: FORZAR A OCUPAR TODO EL ANCHO ===== */
+  /* ===== TABLA DE PRODUCTOS BIEN DISTRIBUIDA ===== */
   .preview-table {
     width: 100% !important;
-    table-layout: fixed;            /* distribuye las columnas equitativamente */
+    table-layout: fixed;
   }
 
-  /* Las columnas se reparten el ancho disponible */
-  .preview-table th:nth-child(1) { width: 35%; }
-  .preview-table th:nth-child(2) { width: 15%; }
-  .preview-table th:nth-child(3) { width: 25%; }
-  .preview-table th:nth-child(4) { width: 25%; }
+  .preview-table th:nth-child(1) { width: 40%; }   /* Descripción */
+  .preview-table th:nth-child(2) { width: 15%; text-align: center; }  /* Cant. */
+  .preview-table th:nth-child(3) { width: 25%; text-align: center; }  /* P. Unitario */
+  .preview-table th:nth-child(4) { width: 20%; text-align: center; }  /* Total */
+
+  .preview-table td:nth-child(2),
+  .preview-table td:nth-child(3),
+  .preview-table td:nth-child(4) {
+    text-align: center;
+  }
 
   /* Modal de configuración de empresa */
   .modal-backdrop .modal-content {
